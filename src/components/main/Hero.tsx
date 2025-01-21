@@ -1,52 +1,40 @@
 import React from "react";
-import { HERO_BG2 } from "@/lib/constants";
 import Button from "../ui/Button";
 import Container from "../ui/Container";
+import CustomBGStyle from "../ui/CustomBGStyle";
+import IconFast from "../ui/IconFast";
+import CircleDotIcon from "../ui/CircleDotIcon";
+import GetStartedIcon from "../ui/GetStartedIcon";
+import Link from "next/link";
 
 const Hero = () => {
   return (
-    <div className="hero-Home w-full bg-[#eef3ff] dark:bg-slate-900">
-      <Container className="min-h-[687px] p-0 relative flex items-center">
-        <div className="flex justify-between items-stretch w-full py-20 h-full">
-          <div className="hero-home--left w-1/2 h-full">
-            <h1 className="text-black text-5xl leading-[4rem] font-medium">
-              <p className="font-normal text-lg block px-4 py-1 bg-yellow-300 text-black max-w-max">
-                New Year Sale
-              </p>
-              <span className="font-bold text-primary">Up to 80% Off </span>
-              <span className=" ">Web Hosting</span>
-            </h1>
-            <p className="text-xl mt-3 mb-4">
-              <i className="cib-next-js"></i>
-              High-performance hosting designed specifically for eCommerce and
-              high-traffic websites. Proudly Australian.
-            </p>
-            <ul className="flex flex-col gap-y-3">
-              <li>Free Domain, SSL and website builder</li>
-              <li>24/7 Support in English and Hindi</li>
-              <li>Free website migration</li>
-            </ul>
-            <div className=" block">
-              <p className="text-6xl font-bold my-5">
-                ₹ 000.00 /<small className="text-xl">mo</small>
-              </p>
-              <p>+3 months free</p>
-            </div>
-            <div className="mt-5 flex justify-start items-center gap-x-4">
-              <Button className="bg-primary btn btn-primary text-white block text-base h-10 font-normal">
-                Get Started
-              </Button>
-              <Button className="btn btn-outline text-primary bg-transparent hover:border-black hover:bg-black/85 hover:text-white block text-base h-10 font-normal">
-                Read more
-              </Button>
-            </div>
-          </div>
-          <div className="hero-home--right absolute bottom-0 right-0">
-            {/* <Image
-              className="max-w-full w-[700px]"
-              sourd={HERO_BG2}
-              alt="Hero Bg"
-            /> */}
+    <div className="hero-Home w-full h-screen relative overflow-hidden">
+      <CustomBGStyle />
+      <Container className="min-h-[687px] p-0 relative flex items-center z-20">
+        <div className="flex flex-col justify-between items-stretch w-full h-full text-center">
+          <h1 className="font-medium font-beatrice text-center text-transparent bg-gradient-to-b from-[#6740E2] to-black text-6xl bg-clip-text leading-[80px]">
+            <span className="flex justify-center items-center">
+              Blazing Fast <IconFast className="mx-3" width={34} height={37} />{" "}
+              Web Hosting
+            </span>
+            <span className="flex justify-center items-center">
+              for Your <CircleDotIcon className="mx-3" width={35} height={35} />{" "}
+              Business
+            </span>
+          </h1>
+          <p className="mt-3 mb-4 text-bodyText font-beatrice text-base font-medium leading-relaxed max-w-[554px] mx-auto">
+            Briefly explain the unique selling points, e.g., 99.9% uptime, 24/7
+            support, and unmatched speed.
+          </p>
+          <div className="mt-5 flex justify-center items-center gap-x-4">
+            <Link href={'#'} className="group btn-secondary hover:opacity-85 !py-1 !pr-1 !pl-8 flex justify-center items-center gap-x-2 font-bold shadow-custom font-beatrice">
+              Get started
+              <span className="bg-custom-gradient rounded-full w-[36px] h-[36px] flex justify-center items-center"><GetStartedIcon /></span>
+            </Link>
+            <Link href={'#'} className="btn-outline border border-primary text-center text-black font-beatrice font-medium  bg-transparent hover:border-black hover:bg-black/85 hover:text-white block text-sm ">
+              View our Plans
+            </Link>
           </div>
         </div>
       </Container>

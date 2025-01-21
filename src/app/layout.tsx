@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "@/styles/globals.css";
 import Header from "@/components/main/Header";
 import Footer from "@/components/main/Footer";
@@ -9,13 +10,13 @@ import { auth } from "@/auth";
 const dm_sans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-dm_sans",
+  variable: "--font-dmSans",
 });
 
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
+const beatrice = localFont({
+  variable: "--font-beatrice",
+  src: "../../public/fonts/BeatriceTrial-Medium.ttf"
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,12 +28,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = auth();
-
   return (
-    <SessionProvider session={session}>
+    <SessionProvider>
       <html lang="en">
-        <body className={`${dm_sans.className}`}>
+        <body className={`${dm_sans.variable} ${beatrice.variable}`}>
           <Header />
           <main>{children}</main>
           <Footer />

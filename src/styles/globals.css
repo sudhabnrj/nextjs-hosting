@@ -1,31 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@font-face {
-    font-family: 'Beatrice Trial';
-    src: url('../../public/fonts/BeatriceTrial-Medium.eot');
-    src: url('../../public/fonts/BeatriceTrial-Medium.eot?#iefix') format('embedded-opentype'),
-        url('../../public/fonts/BeatriceTrial-Medium.woff2') format('woff2'),
-        url('../../public/fonts/BeatriceTrial-Medium.woff') format('woff'),
-        url('../../public/fonts/BeatriceTrial-Medium.ttf') format('truetype'),
-        url('../../public/fonts/BeatriceTrial-Medium.svg#BeatriceTrial-Medium') format('svg');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-beatrice);
 }
-
-@font-face {
-    font-family: 'Beatrice Trial';
-    src: url('../../public/fonts/BeatriceTrial-Regular.eot');
-    src: url('../../public/fonts/BeatriceTrial-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../../public/fonts/BeatriceTrial-Regular.woff2') format('woff2'),
-        url('../../public/fonts/BeatriceTrial-Regular.woff') format('woff'),
-        url('../../public/fonts/BeatriceTrial-Regular.ttf') format('truetype'),
-        url('../../public/fonts/BeatriceTrial-Regular.svg#BeatriceTrial-Regular') format('svg');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+.btn-primary {
+  @apply  text-sm bg-custom-gradient hover:bg-custom-gradient-hover text-white rounded-full py-3 px-5 min-w-[124px] transition-all border border-transparent;
 }
-h1, h2, h3, h4, h5, h6{
-    font-family: var(--font-primary);
+.btn-secondary {
+  @apply  text-sm bg-white text-secondary rounded-full py-3 px-5 min-w-[124px] transition-all border border-transparent;
+}
+.btn-outline{
+  @apply text-sm rounded-full py-3 px-5 min-w-[124px] transition-all;
+}
+/*Hero Home*/
+.hero-Home-bg {
+  background-image: url(../../public/images/hero-bg-min.png);
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.heading-h2 {
+  @apply text-[44px] font-semibold leading-[60px] tracking-wide;
 }
