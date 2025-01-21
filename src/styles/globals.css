@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+    font-family: 'Beatrice Trial';
+    src: url('../../public/fonts/BeatriceTrial-Medium.eot');
+    src: url('../../public/fonts/BeatriceTrial-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../../public/fonts/BeatriceTrial-Medium.woff2') format('woff2'),
+        url('../../public/fonts/BeatriceTrial-Medium.woff') format('woff'),
+        url('../../public/fonts/BeatriceTrial-Medium.ttf') format('truetype'),
+        url('../../public/fonts/BeatriceTrial-Medium.svg#BeatriceTrial-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Beatrice Trial';
+    src: url('../../public/fonts/BeatriceTrial-Regular.eot');
+    src: url('../../public/fonts/BeatriceTrial-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../../public/fonts/BeatriceTrial-Regular.woff2') format('woff2'),
+        url('../../public/fonts/BeatriceTrial-Regular.woff') format('woff'),
+        url('../../public/fonts/BeatriceTrial-Regular.ttf') format('truetype'),
+        url('../../public/fonts/BeatriceTrial-Regular.svg#BeatriceTrial-Regular') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+h1, h2, h3, h4, h5, h6{
+    font-family: var(--font-primary);
+}
