@@ -20,12 +20,12 @@ const Header = () => {
         <div className="w-[350px] flex flex-col lg:flex-row gap-x-4 lg:items-center ml-auto justify-center">
           <Link
             href={"#"}
-            className="btn-primary flex justify-center items-center gap-x-1 !min-w-[149px]"
+            className="btn-primary flex justify-center items-center gap-x-1 !min-w-[149px] hover:shadow-custom"
           >
             <SupportIcon width={20} height={20} className="mr-2" />
             Support
           </Link>
-          <AccountButton className='min-w-[124px]' />
+          <AccountButton className='min-w-[124px] hover:shadow-custom' />
         </div>
       </Container>
     </header>

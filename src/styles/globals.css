@@ -28,3 +28,34 @@ h6 {
 .heading-h2 {
   @apply text-[44px] font-semibold leading-[60px] tracking-wide;
 }
+.custom-card {
+  background: radial-gradient(circle, #ffffff 0%, #f0f5fe 100%);
+  border: 0.82px solid;
+  border-image-source: linear-gradient(23%, #cfe5ff, 49%, #704fe4, 76%, #cfe5ff);
+  border-image-slice: 1;
+}
+.gradient-border {
+  position: relative;
+  border-width: 0.82px; /* Border weight */
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0; /* Full area */
+  border: 0.82px solid;
+  border-image-source: linear-gradient(
+    23%,
+    #cfe5ff,
+    49%,
+    #704fe4,
+    76%,
+    #cfe5ff
+  );
+  border-image-slice: 1;
+  z-index: 0;
+  border-radius: inherit; /* Match parent's border radius */
+}
+.gradient-border > * {
+  position: relative;
+  z-index: 1;
+}
