@@ -1,22 +1,24 @@
 "use client";
-import React from "react";
-
 import { SignOut } from "@/components/auth/signout-button";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import ProfileCircleIcon from "../ui/ProfileCircleIcon";
 
-export default function AccountButton() {
+interface AccountButtonProps {
+  className: string;
+}
+
+export default function AccountButton({className} : AccountButtonProps) {
   const { data: session } = useSession();
   return (
     <>
       {!session?.user ? (
         <Link
-          className="group btn-secondary hover:opacity-85  flex justify-center items-center gap-x-2"
+          className={`${className} group btn-secondary hover:opacity-85  flex justify-center items-center gap-x-2`}
           href="/auth/signin"
         >
-          <ProfileCircleIcon />
+          <ProfileCircleIcon width={30} height={30} className="" />
           Sign In
         </Link>
       ) : (

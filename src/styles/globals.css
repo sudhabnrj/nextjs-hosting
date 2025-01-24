@@ -21,7 +21,7 @@ h6 {
 /*Hero Home*/
 .hero-Home-bg {
   background-image: url(../../public/images/hero-bg-min.png);
-  background-position: center;
+  background-position: top center;
   background-size: 100%;
   background-repeat: no-repeat;
 }

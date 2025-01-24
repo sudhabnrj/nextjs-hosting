@@ -17,7 +17,6 @@ const CircleDotIcon = ({
       width={width}
       height={height}
       viewBox="0 0 34 38"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g id="Group 20">
@@ -26,8 +25,6 @@ const CircleDotIcon = ({
           cx="16.9259"
           cy="4.51772"
           r="3.61468"
-          fill="#3700E9"
-          stroke="#3700E9"
           strokeWidth="0.76908"
         />
         <circle
@@ -35,8 +32,6 @@ const CircleDotIcon = ({
           cx="16.9259"
           cy="33.1275"
           r="3.61468"
-          fill="#3700E9"
-          stroke="#3700E9"
           strokeWidth="0.76908"
         />
         <circle
@@ -44,8 +39,6 @@ const CircleDotIcon = ({
           cx="29.8459"
           cy="11.901"
           r="3.61468"
-          fill="#3700E9"
-          stroke="#3700E9"
           strokeWidth="0.76908"
         />
         <circle
@@ -53,8 +46,6 @@ const CircleDotIcon = ({
           cx="4.00504"
           cy="11.9009"
           r="3.61468"
-          fill="#3700E9"
-          stroke="#3700E9"
           strokeWidth="0.76908"
         />
         <circle
@@ -62,8 +53,6 @@ const CircleDotIcon = ({
           cx="29.8459"
           cy="26.6671"
           r="3.61468"
-          fill="#3700E9"
-          stroke="#3700E9"
           strokeWidth="0.76908"
         />
         <circle
@@ -71,8 +60,6 @@ const CircleDotIcon = ({
           cx="4.00504"
           cy="26.6672"
           r="3.61468"
-          fill="#3700E9"
-          stroke="#3700E9"
           strokeWidth="0.76908"
         />
       </g>

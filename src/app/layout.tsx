@@ -5,7 +5,6 @@ import "@/styles/globals.css";
 import Header from "@/components/main/Header";
 import Footer from "@/components/main/Footer";
 import { SessionProvider } from "next-auth/react";
-import { auth } from "@/auth";
 
 const dm_sans = DM_Sans({
   subsets: ["latin"],
