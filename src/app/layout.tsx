@@ -14,7 +14,12 @@ const dm_sans = DM_Sans({
 
 const beatrice = localFont({
   variable: "--font-beatrice",
-  src: "../../public/fonts/BeatriceTrial-Medium.ttf"
+  src: [
+    { path: "../../public/fonts/BeatriceTrial-Light.otf", weight: "300", style: "normal" },
+    { path: "../../public/fonts/BeatriceTrial-Regular.otf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/BeatriceTrial-Medium.ttf", weight: "500", style: "normal" },
+    { path: "../../public/fonts/BeatriceTrial-Semibold.ttf", weight: "600", style: "normal" },
+  ],
 });
 
 export const metadata: Metadata = {

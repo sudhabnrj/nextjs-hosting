@@ -17,7 +17,7 @@ const Header = () => {
         <div className="flex justify-center flex-row py-3 relative w-[calc(100%-550px)]">
           <Navbar />
         </div>
-        <div className="w-[350px] flex flex-col lg:flex-row gap-x-4 lg:items-center ml-auto justify-center">
+        <div className="w-[350px] flex flex-col lg:flex-row gap-x-4 lg:items-center flex-end justify-end">
           <Link
             href={"#"}
             className="btn-primary flex justify-center items-center gap-x-1 !min-w-[149px] hover:shadow-custom"
@@ -25,7 +25,7 @@ const Header = () => {
             <SupportIcon width={20} height={20} className="mr-2" />
             Support
           </Link>
-          <AccountButton className='min-w-[124px] hover:shadow-custom' />
+          <AccountButton className='w-[124px] hover:shadow-custom' />
         </div>
       </Container>
     </header>

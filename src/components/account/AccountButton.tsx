@@ -18,7 +18,7 @@ export default function AccountButton({className} : AccountButtonProps) {
           className={`${className} group btn-secondary hover:opacity-85  flex justify-center items-center gap-x-2`}
           href="/auth/signin"
         >
-          <ProfileCircleIcon width={30} height={30} className="" />
+          <ProfileCircleIcon width={20} height={20} className="" />
           Sign In
         </Link>
       ) : (

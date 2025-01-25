@@ -8,4 +8,7 @@ export const GuaranteeIcon = "/images/guarantee-icon.png";
 export const FasterLoad = "/images/faster-load.png";
 export const GlobalCDN = "/images/global-cdn.png";
 export const ProvenReliability = "/images/proven-reliability.png";
+export const GlobeWhite = "/images/globe-white.svg";
+export const SharedHosting = "/images/shared-hosting.svg";
+export const Wordpress = "/images/wordpress.svg";
 

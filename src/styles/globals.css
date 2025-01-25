@@ -18,6 +18,12 @@ h6 {
 .btn-outline{
   @apply text-sm rounded-full py-3 px-5 min-w-[124px] transition-all;
 }
+.button-order{
+  @apply rounded-[32px] border justify-center items-center inline-flex shadow-sm;
+}
+.button-order > span{
+  @apply text-transparent bg-gradient-to-b from-[#085BDF] to-[#5D39D3] bg-clip-text
+}
 /*Hero Home*/
 .hero-Home-bg {
   background-image: url(../../public/images/hero-bg-min.png);

@@ -9,10 +9,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#392188",
-        secondary: "#111B29",
-        darkblue: "#180066",
-        bodyText: "#626262",
+        primary: '#180066',
+        lightBlue: '#085adf',
+        secondary: "#121F30",
+        bodyText: "#7D8893",
       },
       backgroundImage: {
         'custom-gradient': 'linear-gradient(to right, #085adf, #5d38d3)',
@@ -20,6 +20,9 @@ export default {
       },
       boxShadow: {
         'custom': '0px 8.23px 30.05px 0px rgba(151, 155, 175, 0.27)',
+      },
+      fontSize: {
+        'h2-title': '44px',
       },
     },
     container: {

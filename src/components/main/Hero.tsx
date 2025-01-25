@@ -12,6 +12,8 @@ import {GlobThumb } from "@/lib/constants";
 import Image from "next/image";
 import BlazingGrid from "../ui/BlazingGrid";
 import ReviewCard from "./ReviewCard";
+import Callicon from "../ui/Callicon";
+import ChatIcon from "../ui/ChatIcon";
 
 const Hero = () => {
   return (
@@ -19,7 +21,7 @@ const Hero = () => {
       <CustomBGStyle />
       <Container className="min-h-[687px] p-0 relative flex items-start flex-col z-20">
         <div className="flex flex-col justify-between items-stretch w-full h-full text-center pt-28">
-          <h1 className="font-medium font-beatrice text-center text-transparent bg-gradient-to-b from-[#6740E2] to-black text-6xl bg-clip-text leading-[80px]">
+          <h1 className="font-medium font-beatrice text-center text-transparent bg-gradient-to-b from-[#6740E2] to-black text-5xl 2xl:text-6xl bg-clip-text leading-normal 2xl:leading-[80px]">
             <span className="flex justify-center items-center">
               Blazing Fast <IconFast className="mx-3" width={34} height={37} />{" "}
               Web Hosting
@@ -57,8 +59,24 @@ const Hero = () => {
             
           </div>
         </div>
-        <div className="review-container mt-12 pb-20">
-          <ReviewCard />
+        <div className="review-container mt-12 pb-20 w-full flex justify-between">
+          <div className="w-[70%] grid grid-flow-col gap-x-7">
+            {Array.from({length: 3}).map((_, index)=> {
+              return (
+                <ReviewCard key={index} />
+              )
+            })}
+          </div>
+          <div className="w-[30%] flex justify-center flex-end items-center flex-col">
+              <p className="flex justify-start items-center text-left mb-5">
+                <Callicon className="mr-4" width={30} height={30} />
+                <Link className="hover:text-primary text-left text-sec text-xl font-medium font-beatrice leading-loose" href={'mailto: +91 80695 90400'}>+91 80695 90400</Link>
+              </p>
+              <p className="flex justify-start items-center text-left">
+                <ChatIcon className="mr-4" width={30} height={30} />
+                <Link className="hover:text-primary text-left text-sec text-xl font-medium font-beatrice leading-loose" href='#'>Chat with us!</Link>
+              </p>
+          </div>
         </div>
       </Container>
     </div>
