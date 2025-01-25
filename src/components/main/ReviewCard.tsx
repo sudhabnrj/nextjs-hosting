@@ -7,8 +7,8 @@ const ReviewCard = () => {
         <div className="self-stretch text-center text-black text-lg font-medium font-beatrice leading-relaxed">Excellent</div>
         <div className="justify-start items-start gap-2 inline-flex">
           {Array.from({length: 5}).map((_, index)=> (
-            <div className="w-10 h-10 p-[3px] bg-gradient-to-r from-[#085adf] to-[#5d38d3] flex-col justify-center items-center inline-flex">
-                <StarIcon key={index} width={28} height={28} className='fill-white' />
+            <div key={index} className="w-10 h-10 p-[3px] bg-gradient-to-r from-[#085adf] to-[#5d38d3] flex-col justify-center items-center inline-flex">
+                <StarIcon width={28} height={28} className='fill-white' />
             </div>
             ))}
         </div>
