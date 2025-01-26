@@ -4,17 +4,16 @@ import DividerLeft from '../ui/DividerLeft'
 import DividerRight from '../ui/DividerRight'
 import PricingCard from './PricingCard'
 import { SharedHosting, GlobeWhite, Wordpress } from '@/lib/constants'
+import CommonTitle from './CommonTitle'
 
 const PricingContainer = () => {
     return (
         <section>
             <Container className='w-full relative'>
-                <div className='text-center relative max-w-max mx-auto'>
-                    <DividerLeft className='absolute right-full top-1/2 -translate-y-1/2' />
-                    <h2 className='text-primary text-center text-4xl 2xl:text-h2-title font-semibold font-beatrice leading-normal tracking-wide'>Our Current Deals, Free Domains <br/>& $0.99 Webhosting</h2>
-                    <p className='text-bodyText text-lg font-normal font-dmSans leading-normal mt-5'>Get started in complete confidence. Our 30-day money-back guarantee means it is risk-free.</p>
-                    <DividerRight className='absolute left-full top-1/2 -translate-y-1/2' />
-                </div>
+                <CommonTitle 
+                title='Our Current Deals, Free Domains & $0.99 Webhosting'
+                subHeading="Get started in complete confidence. Our 30-day money-back guarantee means it's risk-free."
+                />
                 <div className='pricing-container grid grid-flow-col gap-x-4 mt-10 px-14'>
                     <PricingCard 
                         icon={SharedHosting}

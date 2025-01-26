@@ -65,3 +65,29 @@ h6 {
   position: relative;
   z-index: 1;
 }
+.feature-container > div:first-child{
+  @apply md:col-span-6 relative overflow-hidden z-10;
+}
+.feature-container > div:first-child::before{
+  content: '';
+  background-image: url(../../public/images/webhosting-mask.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  @apply w-full h-full absolute top-0 left-0 bottom-0 right-0 -z-[1]
+}
+.feature-container > div:first-child > h3{
+  @apply rounded-md border border-[#2783f9] py-1 px-3 justify-center items-center inline-flex text-white text-sm font-medium font-beatrice leading-normal;
+}
+.feature-container > div:first-child > img{
+  @apply absolute top-9 right-9 w-32
+}
+.feature-container > div:first-child > p{
+  @apply text-white text-[22px] font-bold font-dmSans leading-normal max-w-[340px]
+}
+.custom-border{
+  background: linear-gradient(to bottom, #5D39D3, #DBDDE0); 
+  background-clip: padding-box;
+  mask-composite: intersect; 
+  -webkit-mask: linear-gradient(to bottom, #000 100%, #0000);
+}

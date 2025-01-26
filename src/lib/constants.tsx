@@ -11,4 +11,13 @@ export const ProvenReliability = "/images/proven-reliability.png";
 export const GlobeWhite = "/images/globe-white.svg";
 export const SharedHosting = "/images/shared-hosting.svg";
 export const Wordpress = "/images/wordpress.svg";
+export const WebHosting = "/images/web-hosting.svg";
+export const VPSHosting = "/images/vps-hosting.svg";
+export const CloudHosting = "/images/cloud-hosting.svg";
+export const DedicatedHosting = "/images/dedicated-hosting.svg";
+export const EcommerceHosting = "/images/ecommerce-hosting.svg";
+export const EmailHosting = "/images/email-hosting.svg";
+export const ResellerHosting = "/images/reseller-hosting.svg";
+export const SolutionThumb = "/images/solution-thumb-circle-vector.svg";
+export const MapThumb = "/images/map.svg";
 
