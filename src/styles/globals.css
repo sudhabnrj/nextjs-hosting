@@ -10,19 +10,19 @@ h6 {
   font-family: var(--font-beatrice);
 }
 .btn-primary {
-  @apply  text-sm bg-custom-gradient hover:bg-custom-gradient-hover text-white rounded-full py-3 px-5 min-w-[124px] transition-all border border-transparent;
+  @apply text-sm bg-custom-gradient hover:bg-custom-gradient-hover text-white rounded-full py-3 px-5 min-w-[124px] transition-all border border-transparent;
 }
 .btn-secondary {
-  @apply  text-sm bg-white text-secondary rounded-full py-3 px-5 min-w-[124px] transition-all border border-transparent;
+  @apply text-sm bg-white text-secondary rounded-full py-3 px-5 min-w-[124px] transition-all border border-transparent;
 }
-.btn-outline{
+.btn-outline {
   @apply text-sm rounded-full py-3 px-5 min-w-[124px] transition-all;
 }
-.button-order{
+.button-order {
   @apply rounded-[32px] border justify-center items-center inline-flex shadow-sm;
 }
-.button-order > span{
-  @apply text-transparent bg-gradient-to-b from-[#085BDF] to-[#5D39D3] bg-clip-text
+.button-order > span {
+  @apply text-transparent bg-gradient-to-b from-[#085BDF] to-[#5D39D3] bg-clip-text;
 }
 /*Hero Home*/
 .hero-Home-bg {
@@ -37,7 +37,14 @@ h6 {
 .custom-card {
   background: radial-gradient(circle, #ffffff 0%, #f0f5fe 100%);
   border: 0.82px solid;
-  border-image-source: linear-gradient(23%, #cfe5ff, 49%, #704fe4, 76%, #cfe5ff);
+  border-image-source: linear-gradient(
+    23%,
+    #cfe5ff,
+    49%,
+    #704fe4,
+    76%,
+    #cfe5ff
+  );
   border-image-slice: 1;
 }
 .gradient-border {
@@ -45,7 +52,7 @@ h6 {
   border-width: 0.82px; /* Border weight */
 }
 .gradient-border::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0; /* Full area */
   border: 0.82px solid;
@@ -65,29 +72,33 @@ h6 {
   position: relative;
   z-index: 1;
 }
-.feature-container > div:first-child{
+.feature-container > div:first-child {
   @apply md:col-span-6 relative overflow-hidden z-10;
 }
-.feature-container > div:first-child::before{
-  content: '';
+.feature-container > div:first-child::before {
+  content: "";
   background-image: url(../../public/images/webhosting-mask.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  @apply w-full h-full absolute top-0 left-0 bottom-0 right-0 -z-[1]
+  @apply w-full h-full absolute top-0 left-0 bottom-0 right-0 -z-[1];
 }
-.feature-container > div:first-child > h3{
+.feature-container > div:first-child > h3 {
   @apply rounded-md border border-[#2783f9] py-1 px-3 justify-center items-center inline-flex text-white text-sm font-medium font-beatrice leading-normal;
 }
-.feature-container > div:first-child > img{
-  @apply absolute top-9 right-9 w-32
+.feature-container > div:first-child > img {
+  @apply absolute top-9 right-9 w-32;
 }
-.feature-container > div:first-child > p{
-  @apply text-white text-[22px] font-bold font-dmSans leading-normal max-w-[340px]
+.feature-container > div:first-child > p {
+  @apply text-white text-[22px] font-bold font-dmSans leading-normal max-w-[340px];
 }
-.custom-border{
-  background: linear-gradient(to bottom, #5D39D3, #DBDDE0); 
+.custom-border {
+  background: linear-gradient(to bottom, #5d39d3, #dbdde0);
   background-clip: padding-box;
-  mask-composite: intersect; 
+  mask-composite: intersect;
   -webkit-mask: linear-gradient(to bottom, #000 100%, #0000);
 }
+
+/* * {
+  border: 1px solid red;
+} */

@@ -20,4 +20,5 @@ export const EmailHosting = "/images/email-hosting.svg";
 export const ResellerHosting = "/images/reseller-hosting.svg";
 export const SolutionThumb = "/images/solution-thumb-circle-vector.svg";
 export const MapThumb = "/images/map.svg";
+export const GreenEnergy = "/images/green-energy.png";
 
