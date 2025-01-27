@@ -2,7 +2,6 @@ import React from 'react'
 import Container from '../ui/Container'
 import Image from 'next/image'
 import { MapThumb } from '@/lib/constants'
-import CommonTitle from './CommonTitle'
 import TabComponent from './TabComponent'
 import DataCenterCard from './DataCenterCard'
 

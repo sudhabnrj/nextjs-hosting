@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { GreenEnergy } from "@/lib/constants";
 import Image from "next/image";
 import { useState } from "react";
@@ -6,8 +6,42 @@ import TickIcon from "../ui/TickIcon";
 import Link from "next/link";
 import ArrowLight from "../ui/ArrowLight";
 
+const tabs = [
+  { id: 1, label: "All Location", title: "Modern & Green Energy Data Centers" },
+  { id: 2, label: "United States", title: "Modern & Green Energy Data Centers" },
+  { id: 3, label: "Europe", title: "Europe" },
+  { id: 4, label: "Australia", title: "Australia" },
+  { id: 5, label: "Asia", title: "Asia" },
+];
+
+const services = ["Web Hosting", "Website Builder", "WordPress Hosting"];
+
 const TabComponent = () => {
   const [activeTab, setActiveTab] = useState(1); // State to track the active tab
+
+  const renderTabContent = (tab) => (
+    <div className="w-full flex justify-items-start items-start mb-8">
+      <div className="w-[130px]">
+        <Image src={GreenEnergy} alt={tab.title} width={113} height={113} />
+      </div>
+      <div className="w-[calc(100%-130px)]">
+        <h3 className="text-white text-lg font-extrabold font-dmSans leading-normal mb-4">
+          {tab.title}
+        </h3>
+        <ul>
+          {services.map((service, index) => (
+            <li
+              key={index}
+              className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2"
+            >
+              <TickIcon width={13} height={13} className="fill-transparent mr-2" />
+              {service}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -19,197 +53,41 @@ const TabComponent = () => {
           role="tablist"
           aria-orientation="horizontal"
         >
-          {/* Tab 1 */}
-          <button
-            type="button"
-            className={`py-2 px-3 inline-flex items-center gap-x-2 border-b-2 whitespace-nowrap focus:outline-none text-sm font-medium font-dmSans leading-tight text-white ${
-              activeTab === 1
-                ? " border-white "
-                : "border-transparent "
-            }`}
-            onClick={() => setActiveTab(1)} // Switch to Tab 1
-          >
-            All Location
-          </button>
-
-          {/* Tab 2 */}
-          <button
-            type="button"
-            className={`py-2 px-3 inline-flex items-center gap-x-2 border-b-2 whitespace-nowrap focus:outline-none text-sm font-medium font-dmSans leading-tight text-white ${
-              activeTab === 2
-                ? " border-white "
-                : "border-transparent "
-            }`}
-            onClick={() => setActiveTab(2)} // Switch to Tab 2
-          >
-            United States
-          </button>
-
-          {/* Tab 3 */}
-          <button
-            type="button"
-            className={`py-2 px-3 inline-flex items-center gap-x-2 border-b-2 whitespace-nowrap focus:outline-none text-sm font-medium font-dmSans leading-tight text-white ${
-              activeTab === 3
-                ? " border-white "
-                : "border-transparent "
-            }`}
-            onClick={() => setActiveTab(3)} // Switch to Tab 3
-          >
-            Europe
-          </button>
-          <button
-            type="button"
-            className={`py-2 px-3 inline-flex items-center gap-x-2 border-b-2 whitespace-nowrap focus:outline-none text-sm font-medium font-dmSans leading-tight text-white ${
-              activeTab === 4
-                ? " border-white "
-                : "border-transparent "
-            }`}
-            onClick={() => setActiveTab(4)} // Switch to Tab 3
-          >
-            Australia
-          </button>
-          <button
-            type="button"
-            className={`py-2 px-3 inline-flex items-center gap-x-2 border-b-2 whitespace-nowrap focus:outline-none text-sm font-medium font-dmSans leading-tight text-white ${
-              activeTab === 5
-                ? " border-white "
-                : "border-transparent "
-            }`}
-            onClick={() => setActiveTab(5)} // Switch to Tab 3
-          >
-            Asia
-          </button>
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              className={`py-2 px-3 inline-flex items-center gap-x-2 border-b-2 whitespace-nowrap focus:outline-none text-sm font-medium font-dmSans leading-tight text-white ${
+                activeTab === tab.id ? "border-white" : "border-transparent"
+              }`}
+              onClick={() => setActiveTab(tab.id)} // Switch to the corresponding tab
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div>
 
       {/* Tab Content */}
       <div className="mt-8">
-        {activeTab === 1 && (
-          <div className="w-full ">
-            <div className="w-full flex justify-items-start items-start mb-10">
-              <div className="w-[130px]">
-                <Image src={GreenEnergy} alt="GreenEnergy" width={113} height={113} />
-              </div>
-              <div className="w-[calc(100%-130px)]">
-                <h3 className="text-white text-lg font-extrabold font-dmSans leading-normal mb-4">Modern & Green Energy Data Centers</h3>
-                <ul>
-                  <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2">
-                    <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                    Web Hosting
-                  </li>
-                  <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2">
-                    <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                    Website Builder
-                  </li>
-                  <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal">
-                    <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                    WordPress Hosting
-                  </li>
-                </ul>
-              </div>
+        {tabs.map((tab) =>
+          activeTab === tab.id ? (
+            <div key={tab.id} className="w-full">
+              {renderTabContent(tab)}
             </div>
-            <Link href='#' className="group btn-secondary hover:opacity-85 inline-flex justify-between items-center  font-medium shadow-custom font-beatrice !text-sm relative w-[160px]">
-              See All Server
-              <ArrowLight className="absolute right-5 group-hover:right-3 transition-all ease-linear" width={15} height={15} />
-            </Link>
-          </div>
+          ) : null
         )}
-        {activeTab === 2 && (
-          <div className="w-full flex justify-items-start items-start">
-          <div className="w-[130px]">
-            <Image src={GreenEnergy} alt="GreenEnergy" width={113} height={113} />
-          </div>
-          <div className="w-[calc(100%-130px)]">
-            <h3 className="text-white text-lg font-extrabold font-dmSans leading-normal mb-4">Modern & Green Energy Data Centers</h3>
-            <ul>
-              <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2">
-                <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                Web Hosting
-              </li>
-              <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2">
-                <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                Website Builder
-              </li>
-              <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal">
-                <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                WordPress Hosting
-              </li>
-            </ul>
-          </div>
-        </div>
-        )}
-        {activeTab === 3 && (
-          <div className="w-full flex justify-items-start items-start">
-            <div className="w-[130px]">
-              <Image src={GreenEnergy} alt="GreenEnergy" width={113} height={113} />
-            </div>
-            <div className="w-[calc(100%-130px)]">
-              <h3 className="text-white text-lg font-extrabold font-dmSans leading-normal mb-4">Europe</h3>
-              <ul>
-                <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2">
-                  <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                  Web Hosting
-                </li>
-                <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2">
-                  <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                  Website Builder
-                </li>
-                <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal">
-                  <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                  WordPress Hosting
-                </li>
-              </ul>
-            </div>
-          </div>
-        )}
-        {activeTab === 4 && (
-          <div className="w-full flex justify-items-start items-start">
-            <div className="w-[130px]">
-              <Image src={GreenEnergy} alt="GreenEnergy" width={113} height={113} />
-            </div>
-            <div className="w-[calc(100%-130px)]">
-              <h3 className="text-white text-lg font-extrabold font-dmSans leading-normal mb-4">Australia</h3>
-              <ul>
-                <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2">
-                  <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                  Web Hosting
-                </li>
-                <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2">
-                  <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                  Website Builder
-                </li>
-                <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal">
-                  <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                  WordPress Hosting
-                </li>
-              </ul>
-            </div>
-          </div>
-        )}
-        {activeTab === 5 && (
-          <div className="w-full flex justify-items-start items-start">
-            <div className="w-[130px]">
-              <Image src={GreenEnergy} alt="GreenEnergy" width={113} height={113} />
-            </div>
-            <div className="w-[calc(100%-130px)]">
-              <h3 className="text-white text-lg font-extrabold font-dmSans leading-normal mb-4">Asia</h3>
-              <ul>
-                <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2">
-                  <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                  Web Hosting
-                </li>
-                <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2">
-                  <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                  Website Builder
-                </li>
-                <li className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal">
-                  <TickIcon width={13} height={13} className="fill-transparent mr-2" />
-                  WordPress Hosting
-                </li>
-              </ul>
-            </div>
-          </div>
-        )}
+        <Link
+          href="#"
+          className="group btn-secondary hover:opacity-85 inline-flex justify-between items-center font-medium shadow-custom font-beatrice !text-sm relative w-[160px]"
+        >
+          See All Server
+          <ArrowLight
+            className="absolute right-5 group-hover:right-3 transition-all ease-linear"
+            width={15}
+            height={15}
+          />
+        </Link>
       </div>
     </>
   );
