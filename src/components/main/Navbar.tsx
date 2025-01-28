@@ -6,12 +6,20 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Container from "../ui/Container";
 
+// Define MenuItem type to describe the structure of each menu item
+interface MenuItem {
+  ID: string; // or number, based on your data
+  slug: string;
+  title: string;
+  child_items?: MenuItem[];
+}
+
 interface NavbarProps {
   className?: string;
 }
 
 const Navbar = ({ className }: NavbarProps) => {
-  const [menuData, setMenuData] = useState([]);
+  const [menuData, setMenuData] = useState<MenuItem[]>([]); // Typing menuData
   const [visibleMenu, setVisibleMenu] = useState<string | null>(null);
 
   const menuRef = useRef(null);
@@ -62,65 +70,50 @@ const Navbar = ({ className }: NavbarProps) => {
   }
 
   return (
-    <nav className={` ${className} w-full z-50`}>
+    <nav className={`${className} w-full z-50`}>
       <Container className="mx-auto">
         <div className="w-full flex flex-col lg:flex-row">
-          <div
-            className="w-full flex justify-start lg:justify-center"
-            id="megamenu-cta"
-          >
-            <ul
-              className="w-full lg:w-auto flex lg:items-center gap-y-4 flex-col my-4 lg:my-0 lg:flex-row"
-              ref={menuRef}
-            >
+          <div className="w-full flex justify-start lg:justify-center" id="megamenu-cta">
+            <ul className="w-full lg:w-auto flex lg:items-center gap-y-4 flex-col my-4 lg:my-0 lg:flex-row" ref={menuRef}>
               {menuData.map((menuItem) => (
-                <li key={menuItem?.ID} className="relative">
+                <li key={menuItem.ID} className="relative">
                   <Link
-                    href={`/${menuItem?.slug || "#"}`}
-                    className={`flex items-center justify-between  text-lg text-center lg:text-base font-medium hover:text-indigo-700 ${
-                      pathname === `/${menuItem.slug || ""}`
-                        ? "text-lightBlue"
-                        : "text-secondary"
+                    href={`/${menuItem.slug || "#"}`}
+                    className={`flex items-center justify-between text-lg text-center lg:text-base font-medium hover:text-indigo-700 ${
+                      pathname === `/${menuItem.slug || ""}` ? "text-lightBlue" : "text-secondary"
                     } transition-all duration-500 mb-2 lg:mr-6 lg:mb-0 mr-auto lg:text-left lg:m-0`}
                     onClick={(e) => {
                       if (menuItem.child_items) {
                         e.preventDefault(); // Prevent navigation for menu with children
-                        handleMenuClick(menuItem?.ID);
+                        handleMenuClick(menuItem.ID);
                       }
                     }}
                   >
-                    {menuItem?.title}
-                    {menuItem.child_items?.length > 0 ? (
-                      <MdKeyboardArrowDown />
-                    ) : null}
+                    {menuItem.title}
+                    {menuItem.child_items && menuItem.child_items.length > 0 ? <MdKeyboardArrowDown /> : null}
                   </Link>
-                  {menuItem.child_items?.length > 0 &&
-                    visibleMenu === menuItem.ID && (
-                      <div className="dropdown-menu animate-fade z-10 lg:absolute top-full lg:-translate-x-1/2 lg:left-1/2 bg-white rounded-lg lg:shadow-[0px_15px_30px_0px_rgba(16,24,40,0.1)] lg:px-10 xl:px-8 md:px-5 p-4 max-w-full lg:min-w-[300px] xl:py-8 lg:py-4 md:py-2 mt-4">
-                        <span className="caret absolute"></span>
-                        <ul className="grid grid-cols-1 gap-x-4">
-                          {menuItem.child_items.map(
-                            (subItem: object | array) => (
-                              <li className="group" key={subItem?.ID}>
-                                {subItem.slug ? (
-                                  <Link
-                                    href={`/hosting/${subItem.slug}`}
-                                    className="lg:px-3 p-2 block rounded transition hover:bg-lightBlue/10"
-                                    onClick={() => setVisibleMenu(null)}
-                                  >
-                                    {subItem.title}
-                                  </Link>
-                                ) : (
-                                  <span className="px-3 py-5 ...">
-                                    {subItem.title}
-                                  </span>
-                                )}
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </div>
-                    )}
+                  {menuItem.child_items && menuItem.child_items.length > 0 && visibleMenu === menuItem.ID && (
+                    <div className="dropdown-menu animate-fade z-10 lg:absolute top-full lg:-translate-x-1/2 lg:left-1/2 bg-white rounded-lg lg:shadow-[0px_15px_30px_0px_rgba(16,24,40,0.1)] lg:px-10 xl:px-8 md:px-5 p-4 max-w-full lg:min-w-[300px] xl:py-8 lg:py-4 md:py-2 mt-4">
+                      <span className="caret absolute"></span>
+                      <ul className="grid grid-cols-1 gap-x-4">
+                        {menuItem.child_items.map((subItem) => (
+                          <li className="group" key={subItem.ID}>
+                            {subItem.slug ? (
+                              <Link
+                                href={`/hosting/${subItem.slug}`}
+                                className="lg:px-3 p-2 block rounded transition hover:bg-lightBlue/10"
+                                onClick={() => setVisibleMenu(null)}
+                              >
+                                {subItem.title}
+                              </Link>
+                            ) : (
+                              <span className="px-3 py-5">{subItem.title}</span>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>

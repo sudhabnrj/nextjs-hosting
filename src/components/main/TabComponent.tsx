@@ -18,12 +18,18 @@ const tabs = [
   { id: 5, label: "Asia", title: "Asia" },
 ];
 
+interface tabProps {
+  id: number;
+  label: string;
+  title: string;
+}
+
 const services = ["Web Hosting", "Website Builder", "WordPress Hosting"];
 
 const TabComponent = () => {
   const [activeTab, setActiveTab] = useState(1); // State to track the active tab
 
-  const renderTabContent = (tab) => (
+  const renderTabContent = (tab : tabProps) => (
     <div className="w-full flex justify-items-start items-start mb-8">
       <div className="w-[130px]">
         <Image src={GreenEnergy} alt={tab.title} width={113} height={113} />
