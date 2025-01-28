@@ -20,7 +20,7 @@ const Header = () => {
     <header className="absolute top-0 left-0 right-0 z-[1000] pt-6">
       <Container className="flex justify-between items-center lg:relative">
         {/* Logo */}
-        <Link href="/" className="w-[250px]">
+        <Link href="/" className="w-[350px]">
           <Logo className="w-36" src={SITE_LOGO} alt="Site Logo" />
         </Link>
 

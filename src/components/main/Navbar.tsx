@@ -1,13 +1,13 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import fetchMenu from "@/app/api/nav/route";
+import fetchMenu from "@/lib/fetchMenu";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Container from "../ui/Container";
 
 interface NavbarProps {
-  className: string;
+  className?: string;
 }
 
 const Navbar = ({ className }: NavbarProps) => {
@@ -53,8 +53,8 @@ const Navbar = ({ className }: NavbarProps) => {
     return (
       <ul className="flex justify-center lg:items-center gap-y-4 flex-col my-4 lg:my-0 lg:flex-row">
         {Array.from({ length: 6 }).map((_, index) => (
-          <li key={index} className="animate-pulse">
-            <div className="bg-gray-300 rounded w-11 lg:w-11 h-6 mb-2 lg:mr-6 lg:mb-0"></div>
+          <li key={index} className="animate-pulse flex justify-center items-center">
+            <div className="bg-gray-300 rounded w-11 lg:w-11 h-6 mb-2 lg:mb-0 mx-3"></div>
           </li>
         ))}
       </ul>

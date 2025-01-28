@@ -3,7 +3,7 @@ import React from "react";
 interface HostingSolutionListProps {
   title: string;
   description: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
 }
 
 export default function HostingSolutionList({
