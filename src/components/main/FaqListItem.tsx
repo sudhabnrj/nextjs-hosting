@@ -18,17 +18,17 @@ export default function FaqListItem({
 }: FaqListItemProps) {
   return (
     <div
-      className={`accordion border border-solid border-gray-300 p-4 rounded-xl mb-4 transition ${
-        isActive ? "bg-indigo-50 border-indigo-600" : "hover:bg-gray-50"
+      className={`accordion overflow-hidden border border-solid border-[#dedfe4] rounded-2xl mb-4 transition ${
+        isActive ? "bg-[#F6F7FB] border-lightBlue" : "hover:bg-gray-50"
       }`}
     >
       <Button
         onClick={onClick}
-        className="accordion-toggle group inline-flex items-center justify-between text-left text-lg font-medium text-gray-900 w-full transition hover:text-indigo-600"
+        className="accordion-toggle group inline-flex items-center justify-between text-left text-xl font-medium rounded-none font-dmSans leading-normal w-full bg-white transition hover:text-lightBlue !p-6"
         aria-expanded={isActive}
         aria-controls={`faq-content-${id}`}
       >
-        <h5>{question}</h5>
+        {question}
         <svg
           className={`w-6 h-6 transform transition ${
             isActive ? "rotate-180 text-indigo-600" : "rotate-0 text-gray-900"
@@ -48,8 +48,8 @@ export default function FaqListItem({
       </Button>
       <div
         id={`faq-content-${id}`}
-        className={`mt-2 text-gray-700 text-base overflow-hidden transition-all ${
-          isActive ? "max-h-48" : "max-h-0"
+        className={`text-bodyText text-base font-normal font-dmSans leading-7 overflow-hidden transition-all border-t  ${
+          isActive ? "max-h-48 px-6 py-4 border-[#DEDFE4]" : "max-h-0 border-transparent"
         }`}
         aria-hidden={!isActive}
       >
