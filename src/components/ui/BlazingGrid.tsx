@@ -39,7 +39,7 @@ const BlazingGrid = ({ title, list, className }: BlazingGridProps) => {
                 width={40}
                 height={40}
                 src={FasterLoad}
-                alt="99.9% Uptime Guarantee"
+                alt="5x Faster Load Times with SSDs"
               />
               <p>5x Faster Load Times with SSDs</p>
             </li>
@@ -48,7 +48,7 @@ const BlazingGrid = ({ title, list, className }: BlazingGridProps) => {
                 width={40}
                 height={40}
                 src={GlobalCDN}
-                alt="99.9% Uptime Guarantee"
+                alt="Global CDN for Local Speeds"
               />
               <p>Global CDN for Local Speeds</p>
             </li>

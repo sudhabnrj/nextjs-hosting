@@ -71,10 +71,14 @@ const TabComponent = () => {
             <button
               key={tab.id}
               type="button"
+              role="tab"
               className={`py-2 px-1 md:px-3 inline-flex items-center flex-wrap gap-x-2 border-b-2 sm:whitespace-nowrap focus:outline-none text-base sm:text-sm font-medium font-dmSans leading-tight text-white justify-start text-left ${
                 activeTab === tab.id ? "border-white" : "border-transparent"
               }`}
-              onClick={() => setActiveTab(tab.id)} // Switch to the corresponding tab
+              onClick={() => setActiveTab(tab.id)}
+              aria-selected={activeTab === tab.id ? "true" : "false"}
+              aria-controls={`tab-panel-${tab.id}`}
+              id={`tab-${tab.id}`}
             >
               {tab.label}
             </button>

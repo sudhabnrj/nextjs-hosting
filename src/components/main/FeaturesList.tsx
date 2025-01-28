@@ -33,7 +33,7 @@ export default function FeaturesList({
       </p>
       {!isFeatured ? (
         <Link
-          className="w-[36.74px] h-[36.74px] p-[11.02px] bg-[#ecefff] rounded-full justify-center items-center inline-flex group-hover:shadow-lg transition-all"
+          className="w-[36.74px] h-[36.74px] p-[11.02px] bg-[#ecefff] rounded-full justify-center items-center inline-flex group-hover:shadow-lg transition-all" aria-label={`Read more about ${title}`}
           href={url}
         >
           <ArrowLight className="" width={15} height={15} />
