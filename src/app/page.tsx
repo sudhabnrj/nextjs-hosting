@@ -1,17 +1,19 @@
 import DataCenter from "@/components/main/DataCenter";
+import FaqContainer from "@/components/main/FaqContainer";
 import FeaturesContainer from "@/components/main/FeaturesContainer";
 import Hero from "@/components/main/Hero";
 import HostingSolution from "@/components/main/HostingSolution";
 import PricingContainer from "@/components/main/PricingContainer";
 
 export default function Home() {
-  return(
+  return (
     <>
       <Hero />
-      <PricingContainer/>
+      <PricingContainer />
       <FeaturesContainer />
-      <HostingSolution/>
-      <DataCenter/>
+      <HostingSolution />
+      <DataCenter />
+      <FaqContainer />
     </>
   );
 }

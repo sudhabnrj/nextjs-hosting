@@ -8,13 +8,13 @@ import CommonTitle from "./CommonTitle";
 
 const PricingContainer = () => {
   return (
-    <section className="pt-20">
+    <section className="sm:pt-20">
       <Container className="w-full relative">
         <CommonTitle
           title="Our Current Deals, Free Domains & $0.99 Webhosting"
           subHeading="Get started in complete confidence. Our 30-day money-back guarantee means it's risk-free."
         />
-        <div className="pricing-container grid grid-flow-col gap-x-4 mt-10 xl:px-14 xl:justify-between justify-center">
+        <div className="pricing-container flex flex-col items-center lg:grid lg:grid-flow-col lg:col-span-3 gap-8 lg:gap-x-4 mt-10 xl:px-14 xl:justify-between justify-center lg:items-stretch">
           <PricingCard
             icon={SharedHosting}
             title="Shared Hosting"

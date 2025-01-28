@@ -8,7 +8,11 @@ import ArrowLight from "../ui/ArrowLight";
 
 const tabs = [
   { id: 1, label: "All Location", title: "Modern & Green Energy Data Centers" },
-  { id: 2, label: "United States", title: "Modern & Green Energy Data Centers" },
+  {
+    id: 2,
+    label: "United States",
+    title: "Modern & Green Energy Data Centers",
+  },
   { id: 3, label: "Europe", title: "Europe" },
   { id: 4, label: "Australia", title: "Australia" },
   { id: 5, label: "Asia", title: "Asia" },
@@ -24,7 +28,7 @@ const TabComponent = () => {
       <div className="w-[130px]">
         <Image src={GreenEnergy} alt={tab.title} width={113} height={113} />
       </div>
-      <div className="w-[calc(100%-130px)]">
+      <div className="w-full pl-4 lg:w-[calc(100%-130px)]">
         <h3 className="text-white text-lg font-extrabold font-dmSans leading-normal mb-4">
           {tab.title}
         </h3>
@@ -34,7 +38,11 @@ const TabComponent = () => {
               key={index}
               className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2"
             >
-              <TickIcon width={13} height={13} className="fill-transparent mr-2" />
+              <TickIcon
+                width={13}
+                height={13}
+                className="fill-transparent md:mr-2"
+              />
               {service}
             </li>
           ))}
@@ -46,7 +54,7 @@ const TabComponent = () => {
   return (
     <>
       {/* Tab Navigation */}
-      <div className="border-b border-white/20 dark:border-neutral-700 w-full">
+      <div className="border-b border-white/20 w-full">
         <div
           className="flex gap-x-1"
           aria-label="Tabs"
@@ -57,7 +65,7 @@ const TabComponent = () => {
             <button
               key={tab.id}
               type="button"
-              className={`py-2 px-3 inline-flex items-center gap-x-2 border-b-2 whitespace-nowrap focus:outline-none text-sm font-medium font-dmSans leading-tight text-white ${
+              className={`py-2 px-1 md:px-3 inline-flex items-center flex-wrap gap-x-2 border-b-2 sm:whitespace-nowrap focus:outline-none text-base sm:text-sm font-medium font-dmSans leading-tight text-white justify-start text-left ${
                 activeTab === tab.id ? "border-white" : "border-transparent"
               }`}
               onClick={() => setActiveTab(tab.id)} // Switch to the corresponding tab

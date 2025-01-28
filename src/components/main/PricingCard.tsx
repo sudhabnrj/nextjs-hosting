@@ -29,7 +29,7 @@ const PricingCard = ({
         heghlighted
           ? "bg-custom-gradient text-white"
           : "bg-white text-secondary"
-      } rounded-3xl shadow-custom flex-col justify-start items-start inline-flex p-10 text-secondary border border-lightBlue/20 mx-auto  col-span-3 xl:w-[363px]`}
+      } rounded-3xl shadow-custom flex-col justify-start items-start inline-flex p-10 text-secondary border border-lightBlue/20 mx-auto   w-full sm:w-[400px] xl:w-[363px] lg:w-[320px]`}
     >
       <p>
         <Image src={icon} alt="globe" width={40} height={40} />

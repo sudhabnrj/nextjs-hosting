@@ -23,13 +23,13 @@ export default function FeaturesList({
 }: FeaturesListProps) {
   return (
     <div
-      className={`${className} md:col-span-3 relative rounded-[9.19px] border border-[#d4dcff] px-9 py-7 group hover:border-lightBlue`}
+      className={`${className} col-span-12 sm:col-span-6 lg:col-span-3 relative rounded-[9.19px] border border-[#d4dcff] px-9 py-7 group hover:border-lightBlue`}
     >
       <Image src={icon} alt="VPSHosting" width={55} height={55} />
       <h3 className="text-secondary text-xl font-semibold font-beatrice capitalize leading-normal mt-6 mb-5">
         {title}
       </h3>
-      <p className="text-secondary/95 text-[12.86px] font-normal font-dmSans leading-snug mb-6">
+      <p className="text-secondary/95 text-sm font-normal font-dmSans leading-snug mb-6">
         {description}
       </p>
       {!isFeatured ? (

@@ -73,7 +73,7 @@ h6 {
   z-index: 1;
 }
 .feature-container > div:first-child {
-  @apply md:col-span-6 relative overflow-hidden z-10;
+  @apply col-span-12 lg:col-span-6 relative overflow-hidden z-10;
 }
 .feature-container > div:first-child::before {
   content: "";
@@ -87,7 +87,7 @@ h6 {
   @apply rounded-md border border-[#2783f9] py-1 px-3 justify-center items-center inline-flex text-white text-sm font-medium font-beatrice leading-normal;
 }
 .feature-container > div:first-child > img {
-  @apply absolute top-9 right-9 w-32;
+  @apply sm:absolute top-2 xl:top-9 right-5 xl:right-9 w-32;
 }
 .feature-container > div:first-child > p {
   @apply text-white text-[22px] font-bold font-dmSans leading-normal max-w-[340px];
@@ -97,6 +97,18 @@ h6 {
   background-clip: padding-box;
   mask-composite: intersect;
   -webkit-mask: linear-gradient(to bottom, #000 100%, #0000);
+}
+.caret {
+  top: -40px;
+  left: 0;
+  right: 0;
+  width: 10px;
+  background-color: transparent;
+  margin: auto;
+  border: 25px solid #fff;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-top: 25px solid transparent;
 }
 
 /* * {

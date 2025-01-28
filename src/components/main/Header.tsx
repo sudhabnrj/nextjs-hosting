@@ -28,16 +28,16 @@ const Header = () => {
         <div
           className={`${
             isToggle ? "translate-x-0" : "-translate-x-full"
-          } lg:translate-x-0 fixed lg:relative top-0 left-0 h-screen lg:h-auto w-[300px] lg:w-[calc(100%-550px)] bg-white lg:bg-transparent shadow-md lg:shadow-none z-50 transition-transform duration-300`}
+          } lg:translate-x-0 fixed lg:relative top-0 left-0 h-screen overflow-y-auto lg:overflow-visible lg:h-auto w-[300px] lg:w-[calc(100%-550px)] bg-white lg:bg-transparent shadow-md lg:shadow-none z-50 transition-transform duration-300`}
         >
           <Navbar />
         </div>
 
         {/* Right-side Buttons */}
-        <div className="w-[350px] flex flex-row gap-x-4 items-center justify-end lg:mr-0 mr-10">
+        <div className="w-[350px] flex flex-row gap-x-4 items-center justify-end lg:mr-0 sm:mr-10">
           <Link
             href="#"
-            className="btn-primary flex justify-center items-center gap-x-1 !min-w-[149px] hover:shadow-custom"
+            className="btn-primary hidden sm:flex justify-center items-center gap-x-1 !min-w-[149px] hover:shadow-custom"
           >
             <SupportIcon width={20} height={20} className="mr-2" />
             Support

@@ -2,11 +2,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import fetchMenu from "@/app/api/nav/route";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Container from "../ui/Container";
-import Button from "../ui/Button";
-import { CgMenuGridO } from "react-icons/cg";
 
 interface NavbarProps {
   className: string;
@@ -51,17 +49,17 @@ const Navbar = ({ className }: NavbarProps) => {
     setVisibleMenu((prevMenu) => (prevMenu === menuName ? null : menuName));
   };
 
-  // if (!menuData || menuData.length === 0) {
-  //   return (
-  //     <ul className="flex lg:items-center gap-y-4 flex-col my-4 lg:my-0 lg:flex-row">
-  //       {Array.from({ length: 6 }).map((_, index) => (
-  //         <li key={index} className="animate-pulse">
-  //           <div className="bg-gray-200 rounded w-11 lg:w-11 h-6 mb-2 lg:mr-6 lg:mb-0"></div>
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   );
-  // }
+  if (!menuData || menuData.length === 0) {
+    return (
+      <ul className="flex justify-center lg:items-center gap-y-4 flex-col my-4 lg:my-0 lg:flex-row">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <li key={index} className="animate-pulse">
+            <div className="bg-gray-300 rounded w-11 lg:w-11 h-6 mb-2 lg:mr-6 lg:mb-0"></div>
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   return (
     <nav className={` ${className} w-full z-50`}>
@@ -76,10 +74,10 @@ const Navbar = ({ className }: NavbarProps) => {
               ref={menuRef}
             >
               {menuData.map((menuItem) => (
-                <li key={menuItem?.ID} className="">
+                <li key={menuItem?.ID} className="relative">
                   <Link
                     href={`/${menuItem?.slug || "#"}`}
-                    className={`flex items-center justify-between text-sm text-center lg:text-base font-medium hover:text-indigo-700 ${
+                    className={`flex items-center justify-between  text-lg text-center lg:text-base font-medium hover:text-indigo-700 ${
                       pathname === `/${menuItem.slug || ""}`
                         ? "text-lightBlue"
                         : "text-secondary"
@@ -98,15 +96,16 @@ const Navbar = ({ className }: NavbarProps) => {
                   </Link>
                   {menuItem.child_items?.length > 0 &&
                     visibleMenu === menuItem.ID && (
-                      <div className="dropdown-menu animate-fade z-10 lg:absolute top-full left-0 right-0 m-auto bg-white rounded-lg lg:shadow-[0px_15px_30px_0px_rgba(16,24,40,0.1)] lg:px-10 xl:px-8 md:px-5 p-4 mx-w-full lg:max-w-[400px] xl:py-8 lg:py-4 md:py-2 mt-4">
+                      <div className="dropdown-menu animate-fade z-10 lg:absolute top-full lg:-translate-x-1/2 lg:left-1/2 bg-white rounded-lg lg:shadow-[0px_15px_30px_0px_rgba(16,24,40,0.1)] lg:px-10 xl:px-8 md:px-5 p-4 max-w-full lg:min-w-[300px] xl:py-8 lg:py-4 md:py-2 mt-4">
+                        <span className="caret absolute"></span>
                         <ul className="grid grid-cols-1 gap-x-4">
                           {menuItem.child_items.map(
                             (subItem: object | array) => (
-                              <li key={subItem?.ID}>
+                              <li className="group" key={subItem?.ID}>
                                 {subItem.slug ? (
                                   <Link
                                     href={`/hosting/${subItem.slug}`}
-                                    className="px-3 py-3 block"
+                                    className="lg:px-3 p-2 block rounded transition hover:bg-lightBlue/10"
                                     onClick={() => setVisibleMenu(null)}
                                   >
                                     {subItem.title}

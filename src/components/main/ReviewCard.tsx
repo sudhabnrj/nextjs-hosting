@@ -3,7 +3,7 @@ import StarIcon from "../ui/StarIcon";
 
 const ReviewCard = () => {
   return (
-    <div className="w-full py-8 px-5 bg-white rounded-[10px] shadow-custom flex-col justify-center items-center gap-2 inline-flex">
+    <div className=" w-full sm:w-max lg:w-full py-8 px-5 bg-white rounded-[10px] shadow-custom flex-col justify-center items-center gap-2 inline-flex mx-auto">
       <div className="self-stretch text-center text-black text-lg font-medium font-beatrice leading-relaxed">
         Excellent
       </div>
