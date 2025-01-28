@@ -1,7 +1,5 @@
 import React from "react";
 import Container from "../ui/Container";
-import DividerLeft from "../ui/DividerLeft";
-import DividerRight from "../ui/DividerRight";
 import PricingCard from "./PricingCard";
 import { SharedHosting, GlobeWhite, Wordpress } from "@/lib/constants";
 import CommonTitle from "./CommonTitle";

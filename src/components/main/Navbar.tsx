@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import fetchMenu from "@/app/api/nav/route";
-import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { MdKeyboardArrowDown } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Container from "../ui/Container";
 
