@@ -1,7 +1,10 @@
-import { NextResponse } from 'next/server';
-import fetchMenu from '@/lib/fetchMenu';
+import { NextResponse } from "next/server";
+import fetchMenu from "@/lib/fetchMenu";
 
-export async function GET(request: Request, { params }: { params: Promise<{ location: string }> }) {
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ location: string }> }
+) {
   try {
     const location = (await params).location; // Access the dynamic route parameter
 
@@ -17,6 +20,9 @@ export async function GET(request: Request, { params }: { params: Promise<{ loca
     return NextResponse.json(data);
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

@@ -72,6 +72,9 @@ h6 {
   position: relative;
   z-index: 1;
 }
+.alert-error {
+  @apply bg-[#eab7bc] text-[#58151c] border border-[#f5abb2];
+}
 .feature-container > div:first-child {
   @apply col-span-12 lg:col-span-6 relative overflow-hidden z-10;
 }
@@ -109,6 +112,9 @@ h6 {
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
   border-top: 25px solid transparent;
+}
+.swiper-slide-active > div {
+  @apply bg-custom-gradient;
 }
 
 /* * {
