@@ -27,7 +27,6 @@ const Navbar = ({ className }: NavbarProps) => {
 
   const menuRef = useRef(null);
   const pathname = usePathname();
-  console.log(pathname);
 
   useEffect(() => {
     const getMenu = async () => {

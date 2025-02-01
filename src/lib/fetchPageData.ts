@@ -1,7 +1,7 @@
 export const fetchPageData = async (slug: string) => {
   try {
     const response = await fetch(
-      `https://sudha.cloudcanvas.in/wp-json/wp/v2/pages?slug=${slug}`
+      `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/pages?slug=${slug}`
       //   {
       //     next: { revalidate: 60 },
       //   }
@@ -15,7 +15,7 @@ export const fetchPageData = async (slug: string) => {
     }
 
     const data = await response.json();
-    return data[0]; // Get the first item
+    return data[0];
   } catch (error) {
     console.error("Error fetching page:", error);
     return null;

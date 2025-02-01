@@ -15,10 +15,26 @@ const dm_sans = DM_Sans({
 const beatrice = localFont({
   variable: "--font-beatrice",
   src: [
-    { path: "../../public/fonts/BeatriceTrial-Light.otf", weight: "300", style: "normal" },
-    { path: "../../public/fonts/BeatriceTrial-Regular.otf", weight: "400", style: "normal" },
-    { path: "../../public/fonts/BeatriceTrial-Medium.ttf", weight: "500", style: "normal" },
-    { path: "../../public/fonts/BeatriceTrial-Semibold.ttf", weight: "600", style: "normal" },
+    {
+      path: "../../public/fonts/BeatriceTrial-Light.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/BeatriceTrial-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/BeatriceTrial-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/BeatriceTrial-Semibold.ttf",
+      weight: "600",
+      style: "normal",
+    },
   ],
 });
 
@@ -35,7 +51,9 @@ export default function RootLayout({
   return (
     <SessionProvider>
       <html lang="en">
-        <body className={`${dm_sans.variable} ${beatrice.variable}`}>
+        <body
+          className={`${dm_sans.variable} ${beatrice.variable} overflow-x-hidden`}
+        >
           <Header />
           <main>{children}</main>
           <Footer />

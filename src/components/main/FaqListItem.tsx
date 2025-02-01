@@ -24,7 +24,9 @@ export default function FaqListItem({
     >
       <Button
         onClick={onClick}
-        className="accordion-toggle group inline-flex items-center justify-between text-left text-xl font-medium rounded-none font-dmSans leading-normal w-full bg-white transition hover:text-lightBlue !p-6"
+        className={`accordion-toggle group inline-flex items-center justify-between text-left text-xl font-medium rounded-none font-dmSans leading-normal w-full bg-white ${
+          isActive ? "text-lightBlue" : "text-secondary"
+        } transition hover:text-lightBlue !p-6`}
         aria-expanded={isActive}
         aria-controls={`faq-content-${id}`}
       >
@@ -49,7 +51,9 @@ export default function FaqListItem({
       <div
         id={`faq-content-${id}`}
         className={`text-bodyText text-base font-normal font-dmSans leading-7 overflow-hidden transition-all border-t  ${
-          isActive ? "max-h-48 px-6 py-4 border-[#DEDFE4]" : "max-h-0 border-transparent"
+          isActive
+            ? "max-h-48 px-6 py-4 border-[#DEDFE4]"
+            : "max-h-0 border-transparent"
         }`}
         aria-hidden={!isActive}
       >

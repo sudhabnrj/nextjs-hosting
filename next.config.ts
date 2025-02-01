@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: [
       "sudha.cloudcanvas.in",
+      "localhost",
       "i.pravatar.cc",
       "lh3.googleusercontent.com",
       "avatars.githubusercontent.com",

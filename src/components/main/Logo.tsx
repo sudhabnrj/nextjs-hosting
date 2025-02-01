@@ -1,14 +1,17 @@
-import Image from "next/image";
+import { SITE_LOGO } from "@/lib/constants";
+import Image, { StaticImageData } from "next/image";
 import React from "react";
 
 interface Logoprops {
-  src: string;
-  alt: string;
-  className: string;
+  className?: string;
+  src?: string | StaticImageData;
+  alt?: string;
 }
 
-const Logo = ({ src, alt, className }: Logoprops) => {
-  return <Image width={200} height={100} className={className} src={src} alt={alt} />;
+const Logo = ({ className, src = SITE_LOGO, alt = "Logo" }: Logoprops) => {
+  return (
+    <Image width={200} height={100} className={className} src={src} alt={alt} />
+  );
 };
 
 export default Logo;

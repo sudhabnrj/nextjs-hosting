@@ -4,15 +4,16 @@ import Link from "next/link";
 import ArrowRight from "../ui/ArrowRight";
 import DividerLeft from "../ui/DividerLeft";
 import DividerRight from "../ui/DividerRight";
+import { filterBaseUrl } from "@/lib/utility";
 
 interface HeroProps {
-  title: string;
-  description?: string;
+  banner_title?: string;
+  banner_description?: string;
   button_1: {
-    button_title: string;
-    button_url: string;
+    button_title?: string;
+    button_url?: string;
   };
-  button_2: {
+  button_2?: {
     button_title: string;
     button_url: string;
   };
@@ -21,10 +22,23 @@ interface HeroProps {
   };
 }
 
-const Hero = ({ title, description, button_1, button_2 }: HeroProps) => {
+const Hero = ({
+  banner_title,
+  banner_description,
+  button_1,
+  button_2,
+}: HeroProps) => {
+  const url = button_1?.button_url;
+  const url2 = button_2?.button_url;
+  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN;
+
+  // Use the utility function to filter URLs
+  const filterUrl = filterBaseUrl(url, baseUrl || "");
+  const filterUrl2 = filterBaseUrl(url2, baseUrl || "");
+
   return (
     <>
-      <h1 className="font-medium font-beatrice text-center text-transparent bg-gradient-to-b from-[#6740E2] to-black text-xl sm:text-3xl lg:text-5xl 2xl:text-6xl bg-clip-text leading-normal 2xl:leading-[80px] relative ">
+      <h1 className="font-medium font-beatrice text-center text-transparent bg-gradient-to-b from-[#6740E2] to-black text-[36px] sm:text-4xl lg:text-5xl 2xl:text-6xl bg-clip-text leading-normal 2xl:leading-[80px] relative ">
         <DividerLeft className="mr-9 hidden lg:block left-0 xl:-left-[100px] mt-5 xl:mt-0 absolute top-1/2 -translate-y-1/2" />
         <span className="flex justify-center items-center 2xl:px-[160px] lg:px-[200px]">
           {/* Blazing Fast{" "}
@@ -34,7 +48,7 @@ const Hero = ({ title, description, button_1, button_2 }: HeroProps) => {
                 height={37}
               />
               Web Hosting */}
-          {title}
+          {banner_title}
         </span>
         {/* <span className="flex justify-center items-center">
               for Your{" "}
@@ -48,13 +62,13 @@ const Hero = ({ title, description, button_1, button_2 }: HeroProps) => {
         <DividerRight className="ml-9 hidden lg:block xl:-right-[100px] right-0 mt-5 xl:mt-0 absolute top-1/2 -translate-y-1/2" />
       </h1>
       <p className="mt-3 mb-4 text-bodyText font-beatrice text-base font-medium leading-relaxed max-w-[554px] mx-auto">
-        {description}
+        {banner_description}
       </p>
 
       <div className="mt-5 flex justify-center min-[420px]:flex-row flex-col items-center gap-4 min-[420px]:gap-x-4 relative">
         {button_1?.button_title && (
           <Link
-            href={button_1?.button_url}
+            href={filterUrl}
             className="group btn-secondary hover:opacity-85 !py-1 !pr-1 !pl-8 flex justify-center items-center gap-x-2 font-medium shadow-custom font-beatrice"
           >
             {button_1?.button_title}
@@ -65,7 +79,7 @@ const Hero = ({ title, description, button_1, button_2 }: HeroProps) => {
         )}
         {button_2?.button_title && (
           <Link
-            href={button_2?.button_url}
+            href={filterUrl2}
             className="group btn-outline border border-primary text-center text-black font-beatrice font-medium  bg-transparent flex justify-center items-center text-sm relative !pr-10"
           >
             {button_2?.button_title}

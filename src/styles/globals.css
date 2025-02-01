@@ -113,10 +113,34 @@ h6 {
   border-right: 25px solid transparent;
   border-top: 25px solid transparent;
 }
-.swiper-slide-active > div {
+.testimonial-container .swiper-slide-active > div {
+  @apply bg-custom-gradient border-[#013396];
+}
+.testimonial-container .swiper-slide-active > div::before {
+  content: "";
+  @apply bg-[url(../../public/images/feedback-frame.png)] w-full h-full absolute bg-no-repeat top-0 left-0;
+}
+.testimonial-container .swiper-slide-active .quoteicon {
+  @apply !fill-white;
+}
+.testimonial-container .swiper-slide-active p,
+.testimonial-container .swiper-slide-active h3,
+.testimonial-container .swiper-slide-active h3 > span {
+  @apply text-white;
+}
+.swiper-pagination-bullet {
+  @apply !w-5 !h-[6px] !rounded !bg-black/40;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
   @apply bg-custom-gradient;
 }
-
+.data-center-section {
+  background: radial-gradient(
+    34.06% 34.06% at 34.06% 50%,
+    #085bdf 0%,
+    #5d39d3 100%
+  );
+}
 /* * {
   border: 1px solid red;
 } */

@@ -1,62 +1,17 @@
 "use client";
-import { GreenEnergy } from "@/lib/constants";
 import Image from "next/image";
 import { useState } from "react";
-import TickIcon from "../ui/TickIcon";
 import Link from "next/link";
 import ArrowLight from "../ui/ArrowLight";
+import TickIcon from "../ui/TickIcon";
+import { TabContentListProps, TabProps } from "@/types/types";
 
-const tabs = [
-  { id: 1, label: "All Location", title: "Modern & Green Energy Data Centers" },
-  {
-    id: 2,
-    label: "United States",
-    title: "Modern & Green Energy Data Centers",
-  },
-  { id: 3, label: "Europe", title: "Europe" },
-  { id: 4, label: "Australia", title: "Australia" },
-  { id: 5, label: "Asia", title: "Asia" },
-];
-
-interface tabProps {
-  id: number;
-  label: string;
-  title: string;
+interface TabContentProps {
+  tab: TabProps[];
 }
 
-const services = ["Web Hosting", "Website Builder", "WordPress Hosting"];
-
-const TabComponent = () => {
-  const [activeTab, setActiveTab] = useState(1); // State to track the active tab
-
-  const renderTabContent = (tab : tabProps) => (
-    <div className="w-full flex justify-items-start items-start mb-8">
-      <div className="w-[130px]">
-        <Image src={GreenEnergy} alt={tab.title} width={113} height={113} />
-      </div>
-      <div className="w-full pl-4 lg:w-[calc(100%-130px)]">
-        <h3 className="text-white text-lg font-extrabold font-dmSans leading-normal mb-4">
-          {tab.title}
-        </h3>
-        <ul>
-          {services.map((service, index) => (
-            <li
-              key={index}
-              className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2"
-            >
-              <TickIcon
-                width={13}
-                height={13}
-                className="fill-transparent md:mr-2"
-              />
-              {service}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-
+const TabComponent = ({ tab }: TabContentProps) => {
+  const [activeTab, setActiveTab] = useState<string>(tab[0]?.id || ""); // State to track the active tab
   return (
     <>
       {/* Tab Navigation */}
@@ -67,34 +22,78 @@ const TabComponent = () => {
           role="tablist"
           aria-orientation="horizontal"
         >
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              role="tab"
-              className={`py-2 px-1 md:px-3 inline-flex items-center flex-wrap gap-x-2 border-b-2 sm:whitespace-nowrap focus:outline-none text-base sm:text-sm font-medium font-dmSans leading-tight text-white justify-start text-left ${
-                activeTab === tab.id ? "border-white" : "border-transparent"
-              }`}
-              onClick={() => setActiveTab(tab.id)}
-              aria-selected={activeTab === tab.id ? "true" : "false"}
-              aria-controls={`tab-panel-${tab.id}`}
-              id={`tab-${tab.id}`}
-            >
-              {tab.label}
-            </button>
-          ))}
+          {tab &&
+            tab.map((tabItem) => (
+              <button
+                key={tabItem.id}
+                type="button"
+                role="tab"
+                className={`py-2 px-1 md:px-3 inline-flex items-center flex-wrap gap-x-2 border-b-2 sm:whitespace-nowrap focus:outline-none text-base sm:text-sm font-medium font-dmSans leading-tight text-white justify-start text-left ${
+                  activeTab === tabItem.id
+                    ? "border-white"
+                    : "border-transparent"
+                }`}
+                onClick={() => setActiveTab(tabItem.id)}
+                aria-selected={activeTab === tabItem.id ? "true" : "false"}
+                aria-controls={`tab-panel-${tabItem.id}`}
+                id={`tab-${tabItem.id}`}
+              >
+                {tabItem.tab_name}
+              </button>
+            ))}
         </div>
       </div>
 
       {/* Tab Content */}
       <div className="mt-8">
-        {tabs.map((tab) =>
-          activeTab === tab.id ? (
-            <div key={tab.id} className="w-full">
-              {renderTabContent(tab)}
-            </div>
-          ) : null
-        )}
+        {tab &&
+          tab.map((tabContent) =>
+            activeTab === tabContent.id ? (
+              <div
+                key={tabContent.id}
+                className="w-full"
+                id={`tab-panel-${tabContent.id}`}
+              >
+                <div className="w-full flex justify-items-start items-start mb-8">
+                  <div className="w-[130px]">
+                    <Image
+                      src={tabContent?.content?.image?.url}
+                      alt={tabContent?.content?.image?.alt || "Image"}
+                      width={113}
+                      height={113}
+                      priority
+                    />
+                  </div>
+                  <div className="w-full pl-4 lg:w-[calc(100%-130px)]">
+                    <h3 className="text-white text-lg font-extrabold font-dmSans leading-normal mb-4">
+                      {tabContent.tab_name}
+                    </h3>
+                    <p className="text-white text-base font-dmSans">
+                      {tabContent?.content?.content}
+                    </p>
+                    <ul className="mt-4">
+                      {tabContent?.content?.tab_content_list &&
+                        tabContent?.content?.tab_content_list.map(
+                          (tabList: TabContentListProps) => (
+                            <li
+                              key={tabList?.id}
+                              className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2"
+                            >
+                              <TickIcon
+                                width={13}
+                                height={13}
+                                className="fill-transparent md:mr-2"
+                              />
+                              {tabList?.content_list}
+                            </li>
+                          )
+                        )}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ) : null
+          )}
         <Link
           href="#"
           className="group btn-secondary hover:opacity-85 inline-flex justify-between items-center font-medium shadow-custom font-beatrice !text-sm relative w-[160px]"
