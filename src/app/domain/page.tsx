@@ -1,9 +1,9 @@
 import { fetchPageData } from '@/lib/fetchPageData';
 import React from 'react'
 
-export default async function DomainPage({params } : { params: { slug: string } }) {
+export default async function DomainPage() {
 
-  const page = await fetchPageData(params.slug);
+  const page = await fetchPageData('domain');
       
   if (!page || Object.keys(page).length === 0) {
       console.error("Error: Page data not found or is empty");
@@ -12,6 +12,6 @@ export default async function DomainPage({params } : { params: { slug: string } 
   console.log("page", page);
 
   return (
-    <div>Dedicated Hosting Page: {page?.title?.rendered}</div>
+    <div>Dedicated Hosting Page</div>
   )
 }

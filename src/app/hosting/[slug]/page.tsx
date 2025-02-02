@@ -1,18 +1,22 @@
 import { fetchPageData } from '@/lib/fetchPageData';
-import React from 'react'
+import { notFound } from 'next/navigation';
 
-export default async function HostingPages({params } : { params: { slug: string } }) {
-    const page = await fetchPageData(params.slug);
-    
-    if (!page || Object.keys(page).length === 0) {
-        console.error("Error: Page data not found or is empty");
-        return <p>Error: Page data not found</p>;
+export default async function HostingPages({ params}: {params: Promise<{ slug: string }>}) {
+    const slug = (await params).slug
+
+    // ✅ Remove 'await' from params.slug
+    const page = await fetchPageData(slug);
+
+    if (!page) {
+        console.error("Error: Page data not found");
+        return notFound(); // ✅ Return Next.js 404 page if no data
     }
-    console.log("page", page);
+
+    console.log("Page data", page)
 
     return (
         <div>
-            Hosting Page: {page?.title?.rendered}
+            <h1 className="text-3xl font-bold">{page?.title?.rendered}</h1>
         </div>
-    )
+    );
 }
