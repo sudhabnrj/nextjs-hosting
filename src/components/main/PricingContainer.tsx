@@ -37,6 +37,14 @@ const PricingContainer = () => {
         heghlighted={false}
         extrainfo={true}
       />
+      <PricingCard
+        icon={Wordpress}
+        title="WordPress Hosting"
+        price={"20"}
+        features={["5 GB SSD Storage", "50k Visitors/month", "Free SSL"]}
+        heghlighted={false}
+        extrainfo={true}
+      />
     </>
   );
 };

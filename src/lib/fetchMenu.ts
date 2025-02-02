@@ -8,6 +8,7 @@ export default async function fetchMenu(location: string) {
     }
 
     return await response.json();
+    // return data;
   } catch (error) {
     console.error("Error fetching menu:", error);
     return null;

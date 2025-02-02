@@ -5,13 +5,14 @@ import fetchMenu from "@/lib/fetchMenu";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Container from "../ui/Container";
-import { renderErrorMessage } from "@/lib/utility";
+import { filterBaseUrl, renderErrorMessage } from "@/lib/utility";
 
 // Define MenuItem type to describe the structure of each menu item
 interface MenuItem {
   ID: string; // or number, based on your data
   slug: string;
   title: string;
+  url?: string;
   child_items?: MenuItem[];
 }
 
@@ -74,24 +75,11 @@ const Navbar = ({ className }: NavbarProps) => {
     });
   }
 
-  // if (!menuData || menuData.length === 0) {
-  //   return (
-  //     <ul className="flex justify-center lg:items-center gap-y-4 flex-col my-4 lg:my-0 lg:flex-row">
-  //       {Array.from({ length: 6 }).map((_, index) => (
-  //         <li
-  //           key={index}
-  //           className="animate-pulse flex justify-center items-center"
-  //         >
-  //           <div className="bg-gray-300 rounded w-11 lg:w-11 h-6 mb-2 lg:mb-0 mx-3"></div>
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   );
-  // }
+  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN;
 
   return (
     <nav className={`${className} w-full z-50`}>
-      <Container className="mx-auto">
+      <Container className="mx-auto px-0">
         <div className="w-full flex flex-col lg:flex-row">
           <div
             className="w-full flex justify-start lg:justify-center"
@@ -113,8 +101,8 @@ const Navbar = ({ className }: NavbarProps) => {
                 : menuData.map((menuItem) => (
                     <li key={menuItem.ID} className="relative">
                       <Link
-                        href={`/${menuItem.slug || "#"}`}
-                        className={`flex items-center justify-between text-lg text-center lg:text-base font-medium hover:text-indigo-700 ${
+                        href={`/${filterBaseUrl(menuItem.url, baseUrl || "")}`}
+                        className={`flex items-center justify-between text-center text-sm 2xl:text-base font-medium hover:text-indigo-700 ${
                           pathname === `/${menuItem.slug || ""}`
                             ? "text-lightBlue"
                             : "text-secondary"
@@ -142,7 +130,7 @@ const Navbar = ({ className }: NavbarProps) => {
                                 <li className="group" key={subItem.ID}>
                                   {subItem.slug ? (
                                     <Link
-                                      href={`/hosting/${subItem.slug}`}
+                                      href={`/${filterBaseUrl(subItem.url, baseUrl || "")}`}
                                       className="lg:px-3 p-2 block rounded transition hover:bg-lightBlue/10"
                                       onClick={() => setVisibleMenu(null)}
                                     >

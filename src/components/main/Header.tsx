@@ -20,8 +20,8 @@ const Header = () => {
     <header className="absolute top-0 left-0 right-0 z-[1000] pt-6">
       <Container className="flex justify-between items-center lg:relative">
         {/* Logo */}
-        <Link href="/" className="w-[350px]">
-          <Logo className="w-36" src={SITE_LOGO} alt="Site Logo" />
+        <Link href="/" className="w-[200px]">
+          <Logo className="w-36 h-11" src={SITE_LOGO} alt="Site Logo" />
         </Link>
 
         {/* Navbar for Mobile and Desktop */}
@@ -34,7 +34,7 @@ const Header = () => {
         </div>
 
         {/* Right-side Buttons */}
-        <div className="w-[350px] flex flex-row gap-x-4 items-center justify-end lg:mr-0 sm:mr-10">
+        <div className="w-[295px] flex flex-row gap-x-4 items-center justify-end lg:mr-0 sm:mr-10">
           <Link
             href="#"
             className="btn-primary hidden sm:flex justify-center items-center gap-x-1 !min-w-[149px] hover:shadow-custom"
