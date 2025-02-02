@@ -18,8 +18,8 @@ export default async function Footer() {
   return (
     <footer className="bg-gradient-to-b from-[#28118a] to-[#022253] pt-12">
       <Container>
-        <div className="flex justify-between items-start xl:gap-8">
-          <div className="space-y-8 max-w-[319px]">
+        <div className="flex justify-between lg:flex-row flex-col items-start xl:gap-8">
+          <div className="space-y-8 lg:max-w-[280px] xl:max-w-[319px]">
             <Link href="/">
               <Logo />
             </Link>
@@ -39,8 +39,8 @@ export default async function Footer() {
             </div>
           </div>
 
-          <div className="w-[calc(100%-319px)] mt-16 xl:mt-0">
-            <div className="grid grid-cols-4 gap-8 xl:col-span-2">
+          <div className="w-full lg:w-[calc(100%-319px)] mt-16 xl:mt-0">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 xl:col-span-2">
               {footerMenu?.items &&
                 footerMenu?.items.map((menu: MenuItem) => (
                   <div key={menu.ID} className="flex flex-col">
@@ -65,9 +65,9 @@ export default async function Footer() {
             </div>
           </div>
         </div>
-        <div className="py-5 border-t border-white/20 mt-6 flex justify-between items-center">
+        <div className="py-5 border-t border-white/20 mt-6 flex sm:flex-row flex-col justify-center sm:justify-between items-center">
           <Copyright text="&copy; HostFlow 2024, all rights reserved" />
-          <div className="flex-end max-w-36 flex items-center gap-x-3">
+          <div className="flex-end max-w-36 flex items-center sm:mt-0 mt-3 gap-x-3">
             <SocialIcons />
           </div>
         </div>
