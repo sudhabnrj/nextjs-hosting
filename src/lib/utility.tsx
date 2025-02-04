@@ -20,17 +20,13 @@ export const filterBaseUrl = (
   return typeof url === "string" ? url.replace(baseUrl || "", "") : "";
 };
 
-// export const getSectionData = (page: PageData, layout: string) => {
-//   const data = page?.acf?.page_component.find(
-//     (section: SectionData) => section.acf_fc_layout === layout
-//   );
-//   return data ?? { section_title: "", description: "" };
-// };
-
 export const getSectionData = (
   page: PageData,
   layout: string
 ): PageComponent | undefined => {
+  if (!page?.acf?.page_component || !Array.isArray(page.acf.page_component)) {
+    return undefined; // Ensure there's no error if the data is missing
+  }
   return page?.acf?.page_component.find(
     (section: PageComponent) => section.acf_fc_layout === layout
   );

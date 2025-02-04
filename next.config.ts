@@ -3,12 +3,23 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: [
-      "sudha.cloudcanvas.in",
-      "localhost",
-      "i.pravatar.cc",
-      "lh3.googleusercontent.com",
-      "avatars.githubusercontent.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "sudha.cloudcanvas.in",
+      },
+      {
+        hostname: "localhost",
+      },
+      {
+        hostname: "i.pravatar.cc",
+      },
+      {
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
+        hostname: "avatars.githubusercontent.com",
+      },
     ],
   },
 };

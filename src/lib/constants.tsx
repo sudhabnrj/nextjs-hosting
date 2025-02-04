@@ -25,3 +25,4 @@ export const CpanelLogin = "/images/cpanel-login.png";
 export const GlobaldataCenter = "/images/global-data-center.png";
 export const WordpressSstagging = "/images/wordpress-stagging.png";
 export const PayentCard = "/images/payment-cards.svg";
+export const WebHostingFeatured = "/images/web-hosting.webp";

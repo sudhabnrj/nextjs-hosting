@@ -12,6 +12,17 @@ export interface ImageProps {
 }
 export interface PageComponent {
   acf_fc_layout: string;
+  sub_title?: string;
+  title?: string;
+  offer_text?: string;
+  primary_button_title?: string;
+  primary_button_url?: string;
+  secondary_button_title?: string;
+  secondary_button_url?: string;
+  banner_image?: {
+    url: string;
+    alt: string;
+  };
   banner_title?: string;
   banner_description?: string;
   button_1?: {
@@ -47,6 +58,25 @@ export interface PageComponent {
   };
   bottom_section_bock: DatacenterProps[];
   testimonial_block: testimonialProps[];
+  section_sub_title?: string;
+  button_url: string;
+  button_title: string;
+  featured_block?: FeaturedBlockListProps[];
+  section?: Array<{
+    id: string;
+    banner_position?: {
+      value: string;
+      label?: string;
+    };
+    sub_title: string;
+    title: string;
+    description: string;
+    banner_image: {
+      url: string;
+      alt: string;
+    };
+  }>;
+  section_block: BlockProps[];
 }
 
 export interface featureListProps {
@@ -111,4 +141,23 @@ export interface testimonialProps {
   author_designation: string;
   author_image: ImageProps;
   comments: string;
+}
+
+export interface FeaturedBlockListProps {
+  id: number | string;
+  title: string;
+  description: string;
+  icon?: {
+    url?: string;
+    alt?: string;
+  };
+}
+export interface BlockProps {
+  id?: string | number;
+  icon?: {
+    url: string;
+    alt: string;
+  };
+  title?: string;
+  description?: string;
 }

@@ -141,6 +141,11 @@ h6 {
     #5d39d3 100%
   );
 }
+.custom-border-outline {
+  border: 3px solid transparent;
+  border-image: linear-gradient(to right, red, lightgreen);
+  border-image-slice: 1;
+}
 /* * {
   border: 1px solid red;
 } */

@@ -22,14 +22,16 @@ export default function TestimonialCard({ data }: TestimonialProps) {
         {comments}
       </p>
       <div className="w-full flex justify-start items-center mt-auto">
-        <Image
-          alt={author_name}
-          src={author_image?.url}
-          width={50}
-          height={50}
-          priority
-          className="rounded-full object-cover w-12 h-12"
-        />
+        {author_image && (
+          <Image
+            alt={author_name}
+            src={author_image?.url}
+            width={50}
+            height={50}
+            priority
+            className="rounded-full object-cover w-12 h-12"
+          />
+        )}
         <h3 className="flex flex-col pl-3 max-w-[calc(100%-50px)] text-secondary font-semibold font-beatrice text-base">
           {author_name}
           <span className="text-[#4C5671] text-sm font-normal font-dmSans">
