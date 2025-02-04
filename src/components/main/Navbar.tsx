@@ -5,7 +5,7 @@ import fetchMenu from "@/lib/fetchMenu";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Container from "../ui/Container";
-import { filterBaseUrl, renderErrorMessage } from "@/lib/utility";
+import { renderErrorMessage } from "@/lib/utility";
 
 // Define MenuItem type to describe the structure of each menu item
 interface MenuItem {
