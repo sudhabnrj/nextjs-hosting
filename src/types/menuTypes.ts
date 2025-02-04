@@ -18,6 +18,7 @@ export interface ChildItem {
 export interface MenuItem {
   ID: number;
   title: string;
+  menu_item_parent: string | number;
   child_items?: ChildItem[];
 }
 

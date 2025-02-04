@@ -73,9 +73,7 @@ const Navbar = ({ className }: NavbarProps) => {
       isError,
       message: "Menu failed to load. Please try again later.",
     });
-  }
-
-  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN;
+  }  
 
   return (
     <nav className={`${className} w-full z-50`}>
@@ -101,7 +99,7 @@ const Navbar = ({ className }: NavbarProps) => {
                 : menuData.map((menuItem) => (
                     <li key={menuItem.ID} className="relative">
                       <Link
-                        href={`/${filterBaseUrl(menuItem.url, baseUrl || "")}`}
+                        href={`${menuItem.slug}`}
                         className={`flex items-center justify-between text-center text-sm 2xl:text-base font-medium hover:text-indigo-700 ${
                           pathname === `/${menuItem.slug || ""}`
                             ? "text-lightBlue"
@@ -130,7 +128,7 @@ const Navbar = ({ className }: NavbarProps) => {
                                 <li className="group" key={subItem.ID}>
                                   {subItem.slug ? (
                                     <Link
-                                      href={`/${filterBaseUrl(subItem.url, baseUrl || "")}`}
+                                      href={`/${menuItem.slug}/${subItem.slug}`}
                                       className="lg:px-3 p-2 block rounded transition hover:bg-lightBlue/10"
                                       onClick={() => setVisibleMenu(null)}
                                     >
