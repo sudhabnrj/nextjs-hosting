@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import GetStartedIcon from "@/components/ui/GetStartedIcon";
 import Image, { StaticImageData } from "next/image";
+import { filterBaseUrl } from "@/lib/utility";
 
 interface heroProps {
   sub_title?: string;
@@ -13,6 +14,8 @@ interface heroProps {
   secondaryBtnTitle?: string;
   secondaryBtnurl?: string;
   bannerImg?: string | StaticImageData;
+  alt?: string;
+  animatedBanner?: string[] | undefined;
 }
 
 export default function HeroCommon({
@@ -25,44 +28,70 @@ export default function HeroCommon({
   secondaryBtnTitle,
   secondaryBtnurl,
   bannerImg,
+  animatedBanner,
+  alt,
 }: heroProps) {
+  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN;
+  const filterUrl = filterBaseUrl(primaryBtnUrl, baseUrl || "#");
+
   return (
-    <div className="flex justify-between items-center">
-      <div className="w-1/2 flex justify-start flex-col items-start">
-        <p className="font-beatrice font-medium text-lg text-secondary capitalize mb-5">
-          <span className="dot w-2 h-2 rounded-full bg-custom-gradient inline-block mr-3"></span>
+    <div className="flex items-center justify-between">
+      <div className="flex w-1/2 flex-col items-start justify-start">
+        <p className="mb-5 font-dmSans text-sm font-semibold capitalize text-secondary">
+          <span className="dot mr-3 inline-block h-2 w-2 rounded-full bg-custom-gradient"></span>
           {sub_title}
         </p>
-        <h1 className="text-primary font-semibold font-beatrice text-left text-3xl lg:text-4xl leading-normal relative capitalize mb-5">
+        <h1 className="relative mb-5 text-left font-beatrice text-xl font-semibold capitalize leading-normal text-primary lg:text-[44px]">
           {title}
         </h1>
-        <p className="text-base text-bodyText">{description}</p>
-        <div className="mt-5 flex justify-center min-[420px]:flex-row flex-col items-center gap-4 min-[420px]:gap-x-4 relative">
+        <p className="font-dmSans text-base font-medium text-bodyText">
+          {description}
+        </p>
+        <div className="relative mt-5 flex flex-col items-center justify-center gap-4 min-[420px]:flex-row min-[420px]:gap-x-4">
           <Link
-            href={primaryBtnUrl || "#"}
-            className="group btn-secondary hover:opacity-85 !py-1 !pr-1 !pl-8 flex justify-center items-center gap-x-2 font-medium shadow-custom font-beatrice"
+            href={filterUrl || "#"}
+            className="btn-secondary group flex items-center justify-center gap-x-2 !py-1 !pl-8 !pr-1 font-beatrice font-medium shadow-custom hover:opacity-85"
           >
             {primaryBtnTitle}
-            <span className="bg-custom-gradient rounded-full w-[36px] h-[36px] flex justify-center items-center">
+            <span className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-custom-gradient">
               <GetStartedIcon className="" width={20} height={20} />
             </span>
           </Link>
-          <Link
-            href={secondaryBtnurl || "#"}
-            className="group btn-outline border border-bodyText text-center text-black font-beatrice font-medium  bg-transparent flex justify-center items-center text-sm relative !min-w-[100px]"
-          >
-            {secondaryBtnTitle} / <span>mo</span>
-          </Link>
+          {secondaryBtnTitle && (
+            <Link
+              href={secondaryBtnurl || "#"}
+              className="btn-outline group relative flex !min-w-[100px] items-center justify-center border border-bodyText bg-transparent text-center font-beatrice text-sm font-medium text-black"
+            >
+              {secondaryBtnTitle}
+            </Link>
+          )}
         </div>
-        <p className="text-secondary">{offerText}</p>
+        <p className="mt-4 font-dmSans text-sm font-medium text-secondary">
+          {offerText}
+        </p>
       </div>
-      <div className="w-1/2 flex flex-end justify-end">
-        <Image
-          src={bannerImg as string}
-          alt={"globe"}
-          width={500}
-          height={500}
-        />
+      <div className="flex-end group flex w-1/2 justify-end">
+        {bannerImg && (
+          <div
+            className={
+              animatedBanner && animatedBanner.length > 0
+                ? "relative w-[calc(100%-100px)] rounded-xl border-[2px] border-white"
+                : "relative w-[calc(100%-100px)] rounded-xl"
+            }
+          >
+            <Image
+              className={
+                animatedBanner && animatedBanner.length > 0
+                  ? "relative right-5 top-6 rounded-xl transition-all group-hover:right-0 group-hover:top-0"
+                  : "relative rounded-xl"
+              }
+              src={bannerImg as string}
+              alt={alt as string}
+              width={500}
+              height={500}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

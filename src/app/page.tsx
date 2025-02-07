@@ -69,11 +69,11 @@ export default async function Home() {
   return (
     <>
       {/* Hero Banner */}
-      <section className="hero-Home w-full h-auto relative overflow-hidden">
+      <section className="hero-Home relative h-auto w-full overflow-hidden">
         <CustomBGStyle />
-        <Container className="min-h-[687px] p-0 relative flex items-start flex-col z-20">
+        <Container className="relative z-20 flex min-h-[687px] flex-col items-start p-0">
           {heroSection ? (
-            <div className="flex flex-col justify-between items-stretch w-full h-full text-center pt-28">
+            <div className="flex h-full w-full flex-col items-stretch justify-between pt-28 text-center">
               <Hero
                 banner_title={heroSection?.banner_title}
                 banner_description={heroSection?.banner_description}
@@ -83,7 +83,7 @@ export default async function Home() {
                 button_2={heroSection?.button_2}
               />
               {/* Mobile */}
-              <div className="flex justify-center items-center lg:hidden text-center w-full ">
+              <div className="flex w-full items-center justify-center text-center lg:hidden">
                 <Image
                   src={GlobThumb}
                   alt="Glob"
@@ -93,14 +93,14 @@ export default async function Home() {
                 />
               </div>
 
-              <div className="flex flex-col md:flex-row justify-center items-center mt-7 gap-8 lg:gap-x-0 md:gap-x-8">
+              <div className="mt-7 flex flex-col items-center justify-center gap-8 md:flex-row md:gap-x-8 lg:gap-x-0">
                 <BlazingGrid
                   banner_left_block={heroSection.banner_left_block}
                   className={"order-1 lg:order-1"}
                 />
 
                 {/* Desktop */}
-                <div className="hidden lg:block lg:order-2">
+                <div className="hidden lg:order-2 lg:block">
                   <Image
                     src={GlobThumb}
                     alt="Glob"
@@ -112,7 +112,7 @@ export default async function Home() {
 
                 <BlazingGrid
                   banner_right_block={heroSection.banner_right_block}
-                  className={" order-2 lg:order-3"}
+                  className={"order-2 lg:order-3"}
                 />
               </div>
             </div>
@@ -123,26 +123,26 @@ export default async function Home() {
             })
           )}
 
-          <div className="review-container mt-12 pb-20 w-full flex xl:flex-row flex-col xl:justify-between justify-center">
-            <div className="w-full xl:w-[70%] flex justify-center items-center gap-5 flex-wrap lg:grid lg:grid-flow-col lg:gap-x-7 lg:col-span-3 ">
+          <div className="review-container mt-12 flex w-full flex-col justify-center pb-20 xl:flex-row xl:justify-between">
+            <div className="flex w-full flex-wrap items-center justify-center gap-5 lg:col-span-3 lg:grid lg:grid-flow-col lg:gap-x-7 xl:w-[70%]">
               {Array.from({ length: 3 }).map((_, index) => {
                 return <ReviewCard key={index} />;
               })}
             </div>
-            <div className="xl:w-[30%] flex justify-center xl:flex-end items-center flex-col sm:flex-row xl:flex-col xl:gap-0 gap-5 pt-5 xl:pt-0">
-              <p className="flex justify-start  items-center text-left xl:mb-5">
+            <div className="xl:flex-end flex flex-col items-center justify-center gap-5 pt-5 sm:flex-row xl:w-[30%] xl:flex-col xl:gap-0 xl:pt-0">
+              <p className="flex items-center justify-start text-left xl:mb-5">
                 <Callicon className="mr-4" width={30} height={30} />
                 <Link
-                  className="hover:text-primary text-left text-sec text-xl font-medium font-beatrice leading-loose"
+                  className="text-sec text-left font-beatrice text-xl font-medium leading-loose hover:text-primary"
                   href={"tel: +91 80695 90400"}
                 >
                   +91 80695 90400
                 </Link>
               </p>
-              <p className="flex justify-start items-center text-left">
+              <p className="flex items-center justify-start text-left">
                 <ChatIcon className="mr-4" width={30} height={30} />
                 <Link
-                  className="hover:text-primary text-left text-sec text-xl font-medium font-beatrice leading-loose"
+                  className="text-sec text-left font-beatrice text-xl font-medium leading-loose hover:text-primary"
                   href={"mailto: info@support.com"}
                 >
                   Chat with us!
@@ -153,8 +153,8 @@ export default async function Home() {
         </Container>
       </section>
 
-      <section className="sm:pt-20 pricing-section">
-        <Container className="w-full relative">
+      <section className="pricing-section sm:pt-20">
+        <Container className="relative w-full">
           {pricingSection ? (
             <>
               <CommonTitle
@@ -162,7 +162,7 @@ export default async function Home() {
                 section_title={pricingSection?.section_title}
                 description={pricingSection?.description}
               />
-              <div className="pricing-container flex flex-col items-center lg:grid lg:grid-flow-col lg:col-span-3 gap-8 lg:gap-x-4 mt-10 xl:px-14 xl:justify-between justify-center lg:items-stretch">
+              <div className="pricing-container mt-10 flex flex-col items-center justify-center gap-8 lg:col-span-3 lg:grid lg:grid-flow-col lg:items-stretch lg:gap-x-4 xl:justify-between xl:px-14">
                 <PricingContainer />
               </div>
             </>
@@ -175,8 +175,8 @@ export default async function Home() {
         </Container>
       </section>
 
-      <section className="mt-20 fatures-section">
-        <Container className="w-full relative">
+      <section className="fatures-section mt-20">
+        <Container className="relative w-full">
           {featuredSection ? (
             <>
               <CommonTitle
@@ -184,7 +184,7 @@ export default async function Home() {
                 section_title={featuredSection?.section_title}
                 description={featuredSection?.description}
               />
-              <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 mt-10 feature-container">
+              <div className="feature-container mt-10 grid grid-cols-1 gap-4 sm:grid-cols-12">
                 {features_list.map((feature: featureListProps) => (
                   <FeaturesList
                     key={feature.id}
@@ -211,7 +211,7 @@ export default async function Home() {
         </Container>
       </section>
 
-      <section className="mt-20 hosting-solution">
+      <section className="hosting-solution mt-20">
         <Container>
           {hostingSolutionSection ? (
             <>
@@ -220,9 +220,9 @@ export default async function Home() {
                 section_title={hostingSolutionSection?.section_title}
                 description={hostingSolutionSection?.description}
               />
-              <div className="flex justify-between md:flex-row flex-col items-center mt-10">
-                <div className="lg:w-1/2 w-full flex flex-col gap-8 border-l-2 border-[#DEDFE4] relative">
-                  <div className="absolute w-[2px] h-[172px] inset-0 rounded-lg custom-border -left-[2px]"></div>
+              <div className="mt-10 flex flex-col items-center justify-between md:flex-row">
+                <div className="relative flex w-full flex-col gap-8 border-l-2 border-[#DEDFE4] lg:w-1/2">
+                  <div className="custom-border absolute inset-0 -left-[2px] h-[172px] w-[2px] rounded-lg"></div>
                   {hostingSolutionSection?.list_item.map(
                     (featureItem: hostingSolutionProps) => (
                       <HostingSolutionList
@@ -231,10 +231,10 @@ export default async function Home() {
                         title={featureItem?.title}
                         description={featureItem?.description}
                       />
-                    )
+                    ),
                   )}
                 </div>
-                <div className="w-full lg:w-1/2 mt-10 md:mt-0 text-center flex justify-center items-center">
+                <div className="mt-10 flex w-full items-center justify-center text-center md:mt-0 lg:w-1/2">
                   <Image
                     src={hostingSolutionSection?.section_image?.url as string}
                     alt={hostingSolutionSection?.section_image?.alt as string}
@@ -254,12 +254,12 @@ export default async function Home() {
         </Container>
       </section>
 
-      <section className="py-20 mt-20 data-center-section">
+      <section className="data-center-section mt-20 py-20">
         <Container>
           {dataCenter ? (
             <>
-              <div className="flex justify-between lg:flex-row flex-col items-center">
-                <div className="w-full lg:order-1 order-2 lg:w-1/2 flex justify-center mt-10 lg:mt-0">
+              <div className="flex flex-col items-center justify-between lg:flex-row">
+                <div className="order-2 mt-10 flex w-full justify-center lg:order-1 lg:mt-0 lg:w-1/2">
                   <Image
                     src={dataCenter?.left_image?.url as string}
                     width={530}
@@ -268,20 +268,20 @@ export default async function Home() {
                     priority
                   />
                 </div>
-                <div className="w-full lg:order-2 order-1 lg:w-1/2">
-                  <h2 className="text-white text-3xl lg:text-[34px] font-semibold font-beatrice leading-normal mb-4">
+                <div className="order-1 w-full lg:order-2 lg:w-1/2">
+                  <h2 className="mb-4 font-beatrice text-3xl font-semibold leading-normal text-white lg:text-[34px]">
                     {dataCenter.section_title}
                   </h2>
-                  <p className="text-white text-base font-medium font-dmSans leading-normal">
+                  <p className="font-dmSans text-base font-medium leading-normal text-white">
                     {dataCenter.description}
                   </p>
 
-                  <div className="flex justify-between mt-9 flex-col">
+                  <div className="mt-9 flex flex-col justify-between">
                     <TabComponent tab={dataCenter.tab ?? []} />
                   </div>
                 </div>
               </div>
-              <div className="flex justify-center max-[576px]:flex-col flex-wrap gap-5 md:gap-10 xl:gap-x-28 items-center mt-20 border-t border-white/40 pt-10">
+              <div className="mt-20 flex flex-wrap items-center justify-center gap-5 border-t border-white/40 pt-10 max-[576px]:flex-col md:gap-10 xl:gap-x-28">
                 {dataCenter?.bottom_section_bock &&
                   dataCenter?.bottom_section_bock.map(
                     (block: DatacenterProps) => (
@@ -290,7 +290,7 @@ export default async function Home() {
                         title={block?.title}
                         description={block?.content}
                       />
-                    )
+                    ),
                   )}
               </div>
             </>
@@ -303,7 +303,7 @@ export default async function Home() {
         </Container>
       </section>
 
-      <section className="py-20 moneyback-section bg-gradient-to-r from-[#085adf]/5 to-[#5d38d3]/5">
+      <section className="moneyback-section bg-gradient-to-r from-[#085adf]/5 to-[#5d38d3]/5 py-20">
         <Container>
           {moneyBackSection ? (
             <>
@@ -312,7 +312,7 @@ export default async function Home() {
                 section_title={moneyBackSection?.section_title}
                 description={moneyBackSection?.description}
               />
-              <div className="grid grid-flow-row md:grid-flow-col gap-7 md:gap-x-7 col-span-1 md:col-span-3 mt-14">
+              <div className="col-span-1 mt-14 grid grid-flow-row gap-7 md:col-span-3 md:grid-flow-col md:gap-x-7">
                 {moneyBackSection?.block.map((item: MoneyBackProps) => (
                   <MoneybackCard
                     key={item.id}
@@ -333,7 +333,7 @@ export default async function Home() {
         </Container>
       </section>
 
-      <section className="pt-20 pb-10 testimonial-section">
+      <section className="testimonial-section pb-10 pt-20">
         <Container>
           {testimonial ? (
             <>
@@ -342,7 +342,7 @@ export default async function Home() {
                 section_title={testimonial?.section_title}
                 description={testimonial?.description}
               />
-              <div className="w-full mt-10 testimonial-container">
+              <div className="testimonial-container mt-10 w-full">
                 <TestimonialContainer
                   testimonial_block={testimonial?.testimonial_block ?? []}
                 />
@@ -357,7 +357,7 @@ export default async function Home() {
         </Container>
       </section>
 
-      <section className="py-20 faq-section">
+      <section className="faq-section py-20">
         <Container>
           {faqSection ? (
             <>

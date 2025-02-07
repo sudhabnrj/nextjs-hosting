@@ -73,7 +73,7 @@ const Navbar = ({ className }: NavbarProps) => {
       isError,
       message: "Menu failed to load. Please try again later.",
     });
-  }  
+  }
 
   return (
     <nav className={`${className} w-full z-50`}>

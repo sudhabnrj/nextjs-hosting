@@ -52,7 +52,10 @@ export default async function Footer() {
                         menu?.child_items.map((child: ChildItem) => (
                           <li key={child.ID}>
                             <Link
-                              href={`/${filterBaseUrl(child.url, baseUrl || "")}`}
+                              href={`/${filterBaseUrl(
+                                child.url,
+                                baseUrl || ""
+                              )}`}
                               className="text-sm leading-normal text-[#D0D2D6] hover:text-white"
                             >
                               {child.title}

@@ -7,8 +7,12 @@ export interface PageData {
 export interface ImageProps {
   url: string;
   alt: string;
-  width?: number;
-  height?: number;
+  width?: string | number;
+  height?: string | number;
+}
+export interface ButtonProps {
+  button_url: string;
+  button_title: string;
 }
 export interface PageComponent {
   acf_fc_layout: string;
@@ -75,8 +79,23 @@ export interface PageComponent {
       url: string;
       alt: string;
     };
+    button_title?: string;
+    button_url?: string;
   }>;
   section_block: BlockProps[];
+  banner_full?: string[] | undefined;
+  image_group: ImageProps;
+  image: AboutImageProps | undefined;
+  list_item_block?: listItemDataProps[];
+  map_image: ImageProps;
+  add_block?: CounterCTAProps[] | undefined;
+  about_sec_image_group?: AboutImageProps | undefined;
+  about_section_block?: SectionBlockProps[];
+  history: HistoryArrayProps[] | undefined;
+  address_card: AddressCardProps | undefined;
+  email_card: AddressCardProps | undefined;
+  phone_card: AddressCardProps | undefined;
+  timing_card: AddressCardProps | undefined;
 }
 
 export interface featureListProps {
@@ -160,4 +179,48 @@ export interface BlockProps {
   };
   title?: string;
   description?: string;
+}
+//About Page
+export interface AboutImageProps {
+  large_image?: ImageProps;
+  small_image?: ImageProps;
+}
+export interface listItemDataProps {
+  id: string;
+  list_item: string;
+}
+
+export interface SectionBlockProps {
+  id: string | number;
+  title: string;
+  image_group: string;
+  description?: DescriptionArray[];
+  icon?: ImageProps;
+}
+
+export interface DescriptionArray {
+  id: string | number;
+  paragraph: string;
+}
+
+export interface CounterCTAProps {
+  id: number | string;
+  title?: string;
+  description?: string;
+  icon: {
+    url?: string;
+    alt?: string;
+  };
+}
+
+export interface HistoryArrayProps {
+  id: string;
+  year: string | number;
+  title: string;
+  description: string;
+}
+//Contact Page
+export interface AddressCardProps {
+  content?: string;
+  more_content: string;
 }

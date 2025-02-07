@@ -20,16 +20,18 @@ export default function CTA({
   const filterUrl = filterBaseUrl(button_url, baseUrl || "#");
 
   return (
-    <div className="flex flex-col justify-center items-center bg-custom-gradient pt-12 pb-8 px-10 gap-4 rounded-md">
-      <h2 className="text-white text-4xl font-semibold">{section_title}</h2>
-      <p className="text-white font-dmSans">{description}</p>
+    <div className="cta-bg relative flex flex-col items-center justify-center gap-4 rounded-md bg-custom-gradient px-10 pb-8 pt-12">
+      <h2 className="text-4xl font-semibold text-white">{section_title}</h2>
+      <p className="font-dmSans text-xl font-medium text-white">
+        {description}
+      </p>
       <Link
-        className="group btn-secondary hover:opacity-85 inline-flex justify-between items-center font-medium shadow-custom font-beatrice !text-sm relative !min-w-[160px] !pr-10"
+        className="btn-secondary group relative inline-flex !min-w-[160px] items-center justify-between !pr-10 font-beatrice !text-xl font-medium shadow-custom hover:opacity-85"
         href={`/${filterUrl}`}
       >
         {button_title}
         <ArrowLight
-          className="absolute right-5 group-hover:right-3 transition-all ease-linear"
+          className="absolute right-5 transition-all ease-linear group-hover:right-3"
           width={15}
           height={15}
         />

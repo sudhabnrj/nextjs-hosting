@@ -7,7 +7,6 @@ import TestimonialContainer from "@/components/main/TestimonialContainer";
 import TitleSecondary from "@/components/main/TitleSecondary";
 import Card from "@/components/ui/Card";
 import Container from "@/components/ui/Container";
-import CustomBGStyle from "@/components/ui/CustomBGStyle";
 import { fetchPageData } from "@/lib/fetchPageData";
 import {
   getCommonSectionData,
@@ -24,7 +23,7 @@ type Props = {
 };
 export async function generateMetadata(
   { params }: Props,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const slug = (await params).slug;
   const page = await fetchPageData(slug);
@@ -80,10 +79,10 @@ export default async function HostingPages({
   return (
     <>
       {/* Hero Banner */}
-      <section className="hero-Home w-full h-auto relative overflow-hidden">
-        <CustomBGStyle />
-        <Container className="min-h-[687px] p-0 relative flex items-start flex-col z-20">
-          <div className="flex flex-col justify-between items-stretch w-full h-full text-center pt-28">
+      <section className="common-hero-bg relative h-auto min-h-[1368px] w-full overflow-hidden">
+        {/* <CustomBGStyle /> */}
+        <Container className="relative z-20 flex flex-col items-start p-0">
+          <div className="flex h-full w-full flex-col items-stretch justify-between pt-28 text-center">
             {heroSection && Object.keys(heroSection).length > 0 ? (
               <HeroCommon
                 sub_title={heroSection?.sub_title}
@@ -95,6 +94,7 @@ export default async function HostingPages({
                 secondaryBtnTitle={heroSection?.secondary_button_title}
                 secondaryBtnurl={heroSection?.secondary_button_url}
                 bannerImg={heroSection?.banner_image?.url}
+                animatedBanner={heroSection?.banner_full}
               />
             ) : (
               renderErrorMessage({
@@ -104,38 +104,38 @@ export default async function HostingPages({
             )}
           </div>
         </Container>
+
+        <section className="pricing-section relative pb-20 pt-28">
+          <Container className="relative w-full">
+            {pricingSection && Object.keys(pricingSection).length > 0 ? (
+              <>
+                <CommonTitle
+                  className="md:px-10"
+                  section_title={pricingSection?.section_title}
+                  description={pricingSection?.description}
+                />
+                <div className="pricing-container mt-10 flex flex-col items-center justify-center gap-8 lg:col-span-3 lg:grid lg:grid-flow-col lg:items-stretch lg:gap-x-4 xl:justify-between xl:px-14">
+                  <PricingContainer />
+                </div>
+              </>
+            ) : (
+              renderErrorMessage({
+                isError: "pricing_section",
+                message: "Pricing data not found",
+              })
+            )}
+          </Container>
+        </section>
       </section>
 
-      <section className="sm:pt-20 pricing-section">
-        <Container className="w-full relative">
-          {pricingSection && Object.keys(pricingSection).length > 0 ? (
-            <>
-              <CommonTitle
-                className="md:px-10"
-                section_title={pricingSection?.section_title}
-                description={pricingSection?.description}
-              />
-              <div className="pricing-container flex flex-col items-center lg:grid lg:grid-flow-col lg:col-span-3 gap-8 lg:gap-x-4 mt-10 xl:px-14 xl:justify-between justify-center lg:items-stretch">
-                <PricingContainer />
-              </div>
-            </>
-          ) : (
-            renderErrorMessage({
-              isError: "pricing_section",
-              message: "Pricing data not found",
-            })
-          )}
-        </Container>
-      </section>
-
-      <section className="mt-20 py-20 featured-list bg-gray-100">
+      <section className="featured-list mt-20 bg-[#F4F9FF] py-20">
         <Container>
           {featuredSection && Object.keys(featuredSection).length > 0 ? (
             <>
-              <div className="flex md:flex-row flex-col justify-between items-start">
+              <div className="flex flex-col items-start justify-between md:flex-row">
                 <div className="w-full md:w-1/2">
                   <TitleSecondary
-                    className="text-left px-0"
+                    className="px-0 text-left"
                     subTitle={featuredSection?.section_sub_title}
                     section_title={featuredSection?.section_title}
                     description={featuredSection?.description}
@@ -143,8 +143,9 @@ export default async function HostingPages({
                     button_title={featuredSection?.button_title}
                   />
                 </div>
-                <div className="w-full md:w-1/2 flex  md:justify-end justify-start">
+                <div className="flex w-full justify-start md:w-1/2 md:justify-end">
                   <Image
+                    className="h-[376px] w-full"
                     src={featuredSection?.section_image?.url as string}
                     alt={featuredSection?.section_image?.alt as string}
                     width={540}
@@ -152,21 +153,21 @@ export default async function HostingPages({
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {featuredSection?.featured_block &&
                   featuredSection?.featured_block.map(
                     (item: FeaturedBlockListProps) => (
                       <Card
                         key={item?.id}
                         className={
-                          "bg-white rounded-lg p-8 flex flex-col gap-4"
+                          "flex flex-col gap-4 rounded-lg bg-white p-8"
                         }
                         icon={item?.icon?.url}
                         alt={item?.icon?.alt || ""}
                         cardTitle={item?.title}
                         cardDes={item?.description}
                       />
-                    )
+                    ),
                   )}
               </div>
             </>
@@ -179,7 +180,7 @@ export default async function HostingPages({
         </Container>
       </section>
 
-      <section className="py-20 alternet-block bg-white">
+      <section className="alternet-block bg-white py-20">
         <Container>
           {alternetBlockSection &&
           Object.keys(alternetBlockSection).length > 0 ? (
@@ -195,6 +196,8 @@ export default async function HostingPages({
                     subTitle={item?.sub_title}
                     section_title={item?.title}
                     description={item?.description}
+                    buttonSectionTitle={item?.button_title}
+                    buttonSectionUrl={item?.button_url}
                   />
                 ))}
             </>
@@ -207,24 +210,23 @@ export default async function HostingPages({
         </Container>
       </section>
 
-      <section className="py-20 featured-list bg-white">
+      <section className="featured-list bg-white py-20">
         <Container>
-          {alternetBlockSection &&
-          Object.keys(alternetBlockSection).length > 0 ? (
+          {whyChooseSection && Object.keys(whyChooseSection).length > 0 ? (
             <>
               <CommonTitle
                 section_title={whyChooseSection.section_title}
                 description={whyChooseSection.description}
                 className="md:px-10"
               />
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+              <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {whyChooseSection.section_block &&
                 whyChooseSection.section_block.length > 0
                   ? whyChooseSection?.section_block.map((item) => (
                       <Card
                         key={item.id}
                         className={
-                          "bg-gray-100 rounded-lg p-8 flex flex-col gap-4"
+                          "flex flex-col gap-4 rounded-lg bg-[#F4F9FF] px-8 pb-5 pt-8 shadow-none"
                         }
                         icon={item.icon?.url}
                         alt={item.icon?.alt}
@@ -241,13 +243,13 @@ export default async function HostingPages({
           ) : (
             renderErrorMessage({
               isError: "alternet_block",
-              message: "Alternate Block data not found",
+              message: "whyChoose Section data not found",
             })
           )}
         </Container>
       </section>
 
-      <section className="pt-20 pb-10 testimonial-section">
+      <section className="testimonial-section pb-10 pt-20">
         <Container>
           {testimonial && Object.keys(testimonial).length > 0 ? (
             <>
@@ -256,7 +258,7 @@ export default async function HostingPages({
                 section_title={testimonial?.section_title}
                 description={testimonial?.description}
               />
-              <div className="w-full mt-10 testimonial-container">
+              <div className="testimonial-container mt-10 w-full">
                 <TestimonialContainer
                   testimonial_block={testimonial?.testimonial_block ?? []}
                 />
@@ -270,7 +272,7 @@ export default async function HostingPages({
           )}
         </Container>
       </section>
-      <section className="cTA-section my-10  text-center">
+      <section className="cTA-section my-10 text-center">
         <Container>
           {CTASection && Object.keys(CTASection).length > 0 ? (
             <CTA
