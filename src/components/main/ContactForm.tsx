@@ -88,8 +88,6 @@ export default function ContactForm() {
     }
   };
 
-  console.log(status);
-
   return (
     <form onSubmit={handleSubmit} className="w-full">
       {status && (

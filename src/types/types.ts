@@ -5,7 +5,7 @@ export interface PageData {
   };
 }
 export interface ImageProps {
-  url: string;
+  url?: string;
   alt: string;
   width?: string | number;
   height?: string | number;
@@ -96,6 +96,7 @@ export interface PageComponent {
   email_card: AddressCardProps | undefined;
   phone_card: AddressCardProps | undefined;
   timing_card: AddressCardProps | undefined;
+  alternate_block?: alternateBlock[];
 }
 
 export interface featureListProps {
@@ -156,8 +157,14 @@ export interface DatacenterProps {
 
 export interface testimonialProps {
   id: string | number;
+  acf: acfTestimonial;
+}
+export interface acfTestimonial {
+  testimonial_block: Testimonial_block;
+}
+export interface Testimonial_block {
   author_name: string;
-  author_designation: string;
+  designation: string;
   author_image: ImageProps;
   comments: string;
 }
@@ -223,4 +230,23 @@ export interface HistoryArrayProps {
 export interface AddressCardProps {
   content?: string;
   more_content: string;
+}
+//Dedicated Hosting
+
+export interface alternateBlock {
+  id?: string;
+  description?: string;
+  title: string;
+  banner_position: AlterBannerPosition;
+  block_image?: ImageProps;
+  compare_list_item?: compareListItem[];
+}
+export interface AlterBannerPosition {
+  label?: string;
+  value?: string;
+}
+export interface compareListItem {
+  content?: string;
+  icon: ImageProps;
+  id: string;
 }

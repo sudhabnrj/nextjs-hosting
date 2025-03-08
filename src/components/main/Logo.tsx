@@ -10,7 +10,13 @@ interface Logoprops {
 
 const Logo = ({ className, src = SITE_LOGO, alt = "Logo" }: Logoprops) => {
   return (
-    <Image width={200} height={100} className={className} src={src} alt={alt} />
+    <Image
+      width={144}
+      height={44}
+      className={`${className} sm:h-[44px] sm:w-[144px]`}
+      src={src}
+      alt={alt}
+    />
   );
 };
 

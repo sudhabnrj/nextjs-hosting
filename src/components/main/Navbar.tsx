@@ -6,6 +6,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Container from "../ui/Container";
 import { renderErrorMessage } from "@/lib/utility";
+import SupportIcon from "../ui/SupportIcon";
 
 // Define MenuItem type to describe the structure of each menu item
 interface MenuItem {
@@ -76,35 +77,35 @@ const Navbar = ({ className }: NavbarProps) => {
   }
 
   return (
-    <nav className={`${className} w-full z-50`}>
+    <nav className={`${className} z-50 w-full`}>
       <Container className="mx-auto px-0">
-        <div className="w-full flex flex-col lg:flex-row">
+        <div className="flex w-full flex-col lg:flex-row">
           <div
-            className="w-full flex justify-start lg:justify-center"
+            className="flex w-full justify-start lg:justify-center"
             id="megamenu-cta"
           >
             <ul
-              className="w-full lg:w-auto flex lg:items-center gap-y-4 flex-col my-4 lg:my-0 lg:flex-row"
+              className="my-4 flex w-full flex-col gap-y-4 lg:my-0 lg:w-auto lg:flex-row lg:items-center"
               ref={menuRef}
             >
               {loading
                 ? Array.from({ length: 6 }).map((_, index) => (
                     <li
                       key={index}
-                      className="animate-pulse flex justify-center items-center"
+                      className="flex animate-pulse items-center justify-center"
                     >
-                      <div className="bg-gray-300 rounded w-11 lg:w-11 h-6 mb-2 lg:mb-0 mx-3"></div>
+                      <div className="mx-3 mb-2 h-6 w-11 rounded bg-gray-300 lg:mb-0 lg:w-11"></div>
                     </li>
                   ))
                 : menuData.map((menuItem) => (
                     <li key={menuItem.ID} className="relative">
                       <Link
-                        href={`${menuItem.slug}`}
-                        className={`flex items-center justify-between text-center text-sm 2xl:text-base font-medium hover:text-indigo-700 ${
+                        href={`/${menuItem.slug}`}
+                        className={`flex items-center justify-between text-center text-lg font-medium hover:text-indigo-700 lg:text-sm 2xl:text-base ${
                           pathname === `/${menuItem.slug || ""}`
                             ? "text-lightBlue"
                             : "text-secondary"
-                        } transition-all duration-500 mb-2 lg:mr-6 lg:mb-0 mr-auto lg:text-left lg:m-0`}
+                        } mb-2 mr-auto transition-all duration-500 lg:m-0 lg:mb-0 lg:mr-6 lg:text-left`}
                         onClick={(e) => {
                           if (menuItem.child_items) {
                             e.preventDefault(); // Prevent navigation for menu with children
@@ -121,7 +122,7 @@ const Navbar = ({ className }: NavbarProps) => {
                       {menuItem.child_items &&
                         menuItem.child_items.length > 0 &&
                         visibleMenu === menuItem.ID && (
-                          <div className="dropdown-menu animate-fade z-10 lg:absolute top-full lg:-translate-x-1/2 lg:left-1/2 bg-white rounded-lg lg:shadow-[0px_15px_30px_0px_rgba(16,24,40,0.1)] lg:px-10 xl:px-8 md:px-5 p-4 max-w-full lg:min-w-[300px] xl:py-8 lg:py-4 md:py-2 mt-4">
+                          <div className="dropdown-menu animate-fade top-full z-10 mt-4 max-w-full rounded-lg bg-white p-4 md:px-5 md:py-2 lg:absolute lg:left-1/2 lg:min-w-[300px] lg:-translate-x-1/2 lg:px-10 lg:py-4 lg:shadow-[0px_15px_30px_0px_rgba(16,24,40,0.1)] xl:px-8 xl:py-8">
                             <span className="caret absolute"></span>
                             <ul className="grid grid-cols-1 gap-x-4">
                               {menuItem.child_items.map((subItem) => (
@@ -129,7 +130,7 @@ const Navbar = ({ className }: NavbarProps) => {
                                   {subItem.slug ? (
                                     <Link
                                       href={`/${menuItem.slug}/${subItem.slug}`}
-                                      className="lg:px-3 p-2 block rounded transition hover:bg-lightBlue/10"
+                                      className="block rounded p-2 transition hover:bg-lightBlue/10 lg:px-3"
                                       onClick={() => setVisibleMenu(null)}
                                     >
                                       {subItem.title}
@@ -146,6 +147,16 @@ const Navbar = ({ className }: NavbarProps) => {
                         )}
                     </li>
                   ))}
+
+              <li className="flex sm:hidden">
+                <Link
+                  href="#"
+                  className="btn-primary flex w-full items-center justify-center gap-x-1 font-dmSans hover:shadow-custom"
+                >
+                  <SupportIcon width={20} height={20} className="mr-2" />
+                  Support
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -39,3 +39,4 @@ export const Helping = "/images/active-Services-helping.svg";
 export const People = "/images/people.svg";
 export const Management = "/images/management.svg";
 export const EmailCloud = "/images/email-cloud.svg";
+export const LOGINBG = "/images/login-bg.png";

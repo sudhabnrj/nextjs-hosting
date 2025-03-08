@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "@/styles/globals.css";
 import Header from "@/components/main/Header";
 import Footer from "@/components/main/Footer";
-import { SessionProvider } from "next-auth/react";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const dm_sans = DM_Sans({
   subsets: ["latin"],
@@ -49,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProvider>
+    <AuthProvider>
       <html lang="en">
         <body
           className={`${dm_sans.variable} ${beatrice.variable} overflow-x-hidden`}
@@ -59,6 +59,6 @@ export default function RootLayout({
           <Footer />
         </body>
       </html>
-    </SessionProvider>
+    </AuthProvider>
   );
 }

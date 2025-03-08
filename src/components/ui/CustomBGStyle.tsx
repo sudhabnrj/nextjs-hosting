@@ -8,13 +8,13 @@ const CustomBGStyle = () => {
       <Image
         width={1024}
         height={980}
-        className="w-full h-full origin-top-left absolute opacity-40 mix-blend-color-dodge"
+        className="absolute h-full w-full origin-top-left opacity-40 mix-blend-color-dodge"
         src={LIGHT_MERGE}
         alt="h"
       />
-      <div className="hero-Home-bg absolute h-full z-10 top-0 left-0 right-0 mix-blend-multiply blur-xl">
-        <div className="w-[496px] h-[496px] bg-[#d5cafa] rounded-full blur-[374px] absolute -top-[85px] -right-[70px]"></div>
-        <div className="w-[496px] h-[496px] bg-[#cfe5ff] rounded-full blur-[74px] absolute top-[130px] -left-[150px]"></div>
+      <div className="hero-Home-bg absolute left-0 right-0 top-0 z-10 h-full mix-blend-multiply blur-xl">
+        <div className="absolute -right-[70px] -top-[85px] h-[496px] w-[496px] rounded-full bg-[#d5cafa] blur-[374px]"></div>
+        <div className="absolute -left-[150px] top-[130px] h-[496px] w-[496px] rounded-full bg-[#cfe5ff] blur-[74px]"></div>
       </div>
     </>
   );

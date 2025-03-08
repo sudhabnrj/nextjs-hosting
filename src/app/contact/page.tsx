@@ -93,7 +93,7 @@ export default async function ContactPage() {
         <div className="address-card-container mt-28 pb-10">
           <Container>
             {addressSection && Object.keys(addressSection).length > 0 ? (
-              <div className="grid grid-cols-4 gap-7">
+              <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 xl:grid-cols-4">
                 <AddressCard
                   content={
                     addressSection?.address_card?.content ??
@@ -135,10 +135,10 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      <div className="contact-form py-10">
+      <div className="contact-form pb-10 lg:py-10">
         <Container>
-          <div className="mt-7 flex w-full justify-between bg-white">
-            <div className="w-1/2 max-w-[433px]">
+          <div className="mt-7 flex w-full flex-col justify-between bg-white lg:flex-row">
+            <div className="w-full max-w-[433px] lg:w-1/2">
               {EmailCloud && (
                 <div className="flex justify-end">
                   <Image
@@ -150,7 +150,7 @@ export default async function ContactPage() {
                   />
                 </div>
               )}
-              <h2 className="relative font-beatrice text-[78px] font-bold leading-[97px] text-primary">
+              <h2 className="relative font-beatrice text-[42px] font-bold leading-[57px] text-primary sm:text-[56px] xl:text-[78px] xl:leading-[97px]">
                 Ask a Question
                 <span className="absolute -top-4 right-0 h-36 w-36">
                   <AskArrow width={144} height={144} />
@@ -161,7 +161,7 @@ export default async function ContactPage() {
                 which service is ideal for your business and budget.
               </p>
             </div>
-            <div className="w-1/2 text-left">
+            <div className="mt-10 w-full text-left lg:mt-0 lg:w-1/2">
               <TitleSecondary
                 section_title={"Send US a Message"}
                 description={

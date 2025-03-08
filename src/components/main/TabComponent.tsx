@@ -15,7 +15,7 @@ const TabComponent = ({ tab }: TabContentProps) => {
   return (
     <>
       {/* Tab Navigation */}
-      <div className="border-b border-white/20 w-full">
+      <div className="w-full border-b border-white/20">
         <div
           className="flex gap-x-1"
           aria-label="Tabs"
@@ -28,7 +28,7 @@ const TabComponent = ({ tab }: TabContentProps) => {
                 key={tabItem.id}
                 type="button"
                 role="tab"
-                className={`py-2 px-1 md:px-3 inline-flex items-center flex-wrap gap-x-2 border-b-2 sm:whitespace-nowrap focus:outline-none text-base sm:text-sm font-medium font-dmSans leading-tight text-white justify-start text-left ${
+                className={`inline-flex flex-wrap items-center justify-start gap-x-2 border-b-2 px-1 py-2 text-left font-dmSans text-base font-medium leading-tight text-white focus:outline-none sm:whitespace-nowrap sm:text-sm md:px-3 ${
                   activeTab === tabItem.id
                     ? "border-white"
                     : "border-transparent"
@@ -54,10 +54,10 @@ const TabComponent = ({ tab }: TabContentProps) => {
                 className="w-full"
                 id={`tab-panel-${tabContent.id}`}
               >
-                <div className="w-full flex justify-items-start items-start mb-8">
+                <div className="mb-8 flex w-full items-start justify-items-start">
                   <div className="w-[130px]">
                     <Image
-                      src={tabContent?.content?.image?.url}
+                      src={tabContent?.content?.image?.url as string}
                       alt={tabContent?.content?.image?.alt || "Image"}
                       width={113}
                       height={113}
@@ -65,10 +65,10 @@ const TabComponent = ({ tab }: TabContentProps) => {
                     />
                   </div>
                   <div className="w-full pl-4 lg:w-[calc(100%-130px)]">
-                    <h3 className="text-white text-lg font-extrabold font-dmSans leading-normal mb-4">
+                    <h3 className="mb-4 font-dmSans text-lg font-extrabold leading-normal text-white">
                       {tabContent.tab_name}
                     </h3>
-                    <p className="text-white text-base font-dmSans">
+                    <p className="font-dmSans text-base text-white">
                       {tabContent?.content?.content}
                     </p>
                     <ul className="mt-4">
@@ -77,7 +77,7 @@ const TabComponent = ({ tab }: TabContentProps) => {
                           (tabList: TabContentListProps) => (
                             <li
                               key={tabList?.id}
-                              className="flex justify-start items-center text-white text-xs font-light font-dmSans leading-normal mb-2"
+                              className="mb-2 flex items-center justify-start font-dmSans text-xs font-light leading-normal text-white"
                             >
                               <TickIcon
                                 width={13}
@@ -86,21 +86,21 @@ const TabComponent = ({ tab }: TabContentProps) => {
                               />
                               {tabList?.content_list}
                             </li>
-                          )
+                          ),
                         )}
                     </ul>
                   </div>
                 </div>
               </div>
-            ) : null
+            ) : null,
           )}
         <Link
           href="#"
-          className="group btn-secondary hover:opacity-85 inline-flex justify-between items-center font-medium shadow-custom font-beatrice !text-sm relative w-[160px]"
+          className="btn-secondary group relative inline-flex w-[160px] items-center justify-between font-beatrice !text-sm font-medium shadow-custom hover:opacity-85"
         >
           See All Server
           <ArrowLight
-            className="absolute right-5 group-hover:right-3 transition-all ease-linear"
+            className="absolute right-5 transition-all ease-linear group-hover:right-3"
             width={15}
             height={15}
           />

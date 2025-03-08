@@ -29,7 +29,7 @@ const BlazingGrid = ({
       }`}
     >
       <BlazingPerformanceBg className="" />
-      <div className="absolute top-0 left-0 w-full p-5">
+      <div className="absolute left-0 top-0 w-full p-5">
         <p className="flex items-center font-beatrice">
           <CircleDotIcon className="mx-3 fill-black" width={15} height={15} />
           {banner_left_block?.list_item
@@ -37,11 +37,11 @@ const BlazingGrid = ({
             : banner_right_block?.title}
         </p>
         {banner_left_block?.list_item ? (
-          <ul className="flex flex-col w-full mt-4">
+          <ul className="mt-4 flex w-full flex-col">
             {banner_left_block?.list_item.map((list, index) => (
               <li
                 key={index}
-                className="flex bg-white rounded-lg shadow-custom p-2 justify-start items-center gap-x-4 mb-2 text-primary text-sm font-medium font-dmSans"
+                className="mb-2 flex items-center justify-start gap-x-4 rounded-lg bg-white p-2 font-dmSans text-sm font-medium text-primary shadow-custom"
               >
                 <Image
                   width={40}

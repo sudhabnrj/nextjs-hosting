@@ -32,16 +32,19 @@ export default function HistoryContainer({ historyData = [] }: HistoryProps) {
       navigation={true}
       pagination={pagination}
       modules={[Pagination, Navigation]}
-      className="historySwiper !py-20 mt-20"
+      className="historySwiper !py-10 md:mt-20 md:!py-20"
     >
       {historyData &&
         historyData.map((historyItem) => (
           <SwiperSlide key={historyItem.id}>
             <div className="max-w-[800px]">
-              <h3 className="text-white font-beatrice font-semibold text-2xl mt-6">
+              <span className="relative inline-block rounded bg-white px-5 py-2 font-dmSans font-medium text-secondary md:hidden">
+                {historyItem?.year}
+              </span>
+              <h3 className="mt-6 font-beatrice text-2xl font-semibold text-white">
                 {historyItem?.title}
               </h3>
-              <p className="font-dmSans text-white mt-4 font-medium leading-loose text-base">
+              <p className="mt-4 font-dmSans text-base font-medium leading-loose text-white">
                 {historyItem?.description}
               </p>
             </div>

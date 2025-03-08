@@ -32,15 +32,22 @@ import TestimonialContainer from "@/components/main/TestimonialContainer";
 import FaqContainer from "@/components/main/FaqContainer";
 import TabComponent from "@/components/main/TabComponent";
 import DataCenterCard from "@/components/main/DataCenterCard";
+import { fetchPost } from "@/lib/fetchPost";
+import { notFound } from "next/navigation";
 
 export default async function Home() {
   const page = await fetchPageData("home");
 
   if (!page || Object.keys(page).length === 0) {
     console.error("Error: Page data not found or is empty");
-    return <p>Error: Page data not found</p>;
+    return notFound();
   }
-  console.log("page", page);
+  const testimonialPost = await fetchPost("testimonials");
+
+  if (!testimonialPost) {
+    console.error("Error: Testimonial Post not found");
+    return notFound();
+  }
 
   //Find Hero Section Data
   const heroSection =
@@ -215,11 +222,14 @@ export default async function Home() {
         <Container>
           {hostingSolutionSection ? (
             <>
-              <CommonTitle
-                className="md:px-10"
-                section_title={hostingSolutionSection?.section_title}
-                description={hostingSolutionSection?.description}
-              />
+              <div className="mx-auto max-w-[700px]">
+                <CommonTitle
+                  className=""
+                  section_title={hostingSolutionSection?.section_title}
+                  description={hostingSolutionSection?.description}
+                />
+              </div>
+
               <div className="mt-10 flex flex-col items-center justify-between md:flex-row">
                 <div className="relative flex w-full flex-col gap-8 border-l-2 border-[#DEDFE4] lg:w-1/2">
                   <div className="custom-border absolute inset-0 -left-[2px] h-[172px] w-[2px] rounded-lg"></div>
@@ -307,11 +317,13 @@ export default async function Home() {
         <Container>
           {moneyBackSection ? (
             <>
-              <CommonTitle
-                className="md:px-10"
-                section_title={moneyBackSection?.section_title}
-                description={moneyBackSection?.description}
-              />
+              <div className="mx-auto max-w-[700px]">
+                <CommonTitle
+                  className=""
+                  section_title={moneyBackSection?.section_title}
+                  description={moneyBackSection?.description}
+                />
+              </div>
               <div className="col-span-1 mt-14 grid grid-flow-row gap-7 md:col-span-3 md:grid-flow-col md:gap-x-7">
                 {moneyBackSection?.block.map((item: MoneyBackProps) => (
                   <MoneybackCard
@@ -344,7 +356,7 @@ export default async function Home() {
               />
               <div className="testimonial-container mt-10 w-full">
                 <TestimonialContainer
-                  testimonial_block={testimonial?.testimonial_block ?? []}
+                  testimonial_block={testimonialPost ?? []}
                 />
               </div>
             </>

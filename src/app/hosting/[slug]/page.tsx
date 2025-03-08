@@ -17,6 +17,7 @@ import { FeaturedBlockListProps, PageComponent } from "@/types/types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
+import { fetchPost } from "@/lib/fetchPost";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -51,10 +52,15 @@ export default async function HostingPages({
 
   const page = await fetchPageData(slug);
 
-  console.log("page", page);
-
   if (!page) {
     console.error("Error: Page data not found");
+    return notFound();
+  }
+
+  const testimonialPost = await fetchPost("testimonials");
+
+  if (!testimonialPost) {
+    console.error("Error: Testimonial Post not found");
     return notFound();
   }
 
@@ -260,7 +266,7 @@ export default async function HostingPages({
               />
               <div className="testimonial-container mt-10 w-full">
                 <TestimonialContainer
-                  testimonial_block={testimonial?.testimonial_block ?? []}
+                  testimonial_block={testimonialPost ?? []}
                 />
               </div>
             </>
@@ -277,7 +283,7 @@ export default async function HostingPages({
           {CTASection && Object.keys(CTASection).length > 0 ? (
             <CTA
               section_title={CTASection?.section_title}
-              description={CTASection?.section_title}
+              description={CTASection?.description}
               button_title={CTASection?.button_title}
               button_url={CTASection?.button_url}
             />

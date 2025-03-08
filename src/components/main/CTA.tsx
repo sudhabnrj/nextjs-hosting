@@ -20,13 +20,15 @@ export default function CTA({
   const filterUrl = filterBaseUrl(button_url, baseUrl || "#");
 
   return (
-    <div className="cta-bg relative flex flex-col items-center justify-center gap-4 rounded-md bg-custom-gradient px-10 pb-8 pt-12">
-      <h2 className="text-4xl font-semibold text-white">{section_title}</h2>
-      <p className="font-dmSans text-xl font-medium text-white">
+    <div className="cta-bg relative flex flex-col items-center justify-center gap-4 rounded-md bg-custom-gradient px-5 pb-8 pt-12 sm:px-10">
+      <h2 className="text-3xl font-semibold text-white lg:text-4xl">
+        {section_title}
+      </h2>
+      <p className="font-dmSans text-base font-medium text-white sm:text-xl">
         {description}
       </p>
       <Link
-        className="btn-secondary group relative inline-flex !min-w-[160px] items-center justify-between !pr-10 font-beatrice !text-xl font-medium shadow-custom hover:opacity-85"
+        className="btn-secondary group relative inline-flex !min-w-[160px] items-center justify-between !pr-10 font-beatrice !text-base font-medium shadow-custom hover:opacity-85 lg:!text-base"
         href={`/${filterUrl}`}
       >
         {button_title}

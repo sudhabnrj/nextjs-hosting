@@ -19,6 +19,7 @@ import TestimonialContainer from "@/components/main/TestimonialContainer";
 import CTA from "@/components/main/CTA";
 import AboutUsContent from "@/components/main/AboutUsContent";
 import EmpHapinessImageGroup from "@/components/main/EmpHapinessImageGroup";
+import { fetchPost } from "@/lib/fetchPost";
 
 // Generate metadata dynamically
 export async function generateMetadata(): Promise<Metadata> {
@@ -48,10 +49,16 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AboutPage() {
   const page = await fetchPageData("about");
-  console.log("About page", page);
 
   if (!page) {
     console.error("Error: Page data not found");
+    return notFound();
+  }
+
+  const testimonialPost = await fetchPost("testimonials");
+
+  if (!testimonialPost) {
+    console.error("Error: Testimonial Post not found");
     return notFound();
   }
 
@@ -101,7 +108,7 @@ export default async function AboutPage() {
             )}
           </div>
         </Container>
-        <section className="pricing-section about-section relative z-10 my-36">
+        <section className="pricing-section about-section relative z-10 my-20 lg:my-36">
           <Container>
             {aboutSection && Object.keys(aboutSection).length > 0 ? (
               <>
@@ -110,7 +117,7 @@ export default async function AboutPage() {
                   section_title={aboutSection?.section_title}
                   description={aboutSection?.description}
                 />
-                <div className="mt-20 flex items-start justify-between gap-20">
+                <div className="mt-20 flex flex-col items-start justify-between gap-20 lg:flex-row">
                   <AboutUsContent
                     AboutBanner={aboutSection?.about_sec_image_group}
                     AboutContent={aboutSection?.about_section_block}
@@ -130,15 +137,15 @@ export default async function AboutPage() {
       <section className="employees-happiness-section min-h-[580px] bg-[#F4F9FF] pb-28 pt-20">
         <Container>
           {empHapiness && Object.keys(empHapiness).length > 0 ? (
-            <div className="flex items-center justify-between gap-20">
-              <div className="flex w-1/2 flex-col gap-3">
+            <div className="flex flex-col items-center justify-between gap-20 lg:flex-row">
+              <div className="flex w-full flex-col gap-3 lg:w-1/2">
                 <TitleSecondary
                   section_title={empHapiness?.section_title}
                   description={empHapiness?.description}
                   listItemData={empHapiness?.list_item_block}
                 />
               </div>
-              <div className="relative z-10 flex w-1/2 flex-row items-stretch gap-4">
+              <div className="relative z-10 flex w-full flex-row items-stretch gap-4 lg:w-1/2">
                 <EmpHapinessImageGroup ImageGroup={empHapiness?.image} />
               </div>
             </div>
@@ -151,7 +158,7 @@ export default async function AboutPage() {
         </Container>
       </section>
 
-      <section className="history-section relative bg-custom-gradient pb-2 sm:pt-20">
+      <section className="history-section relative bg-custom-gradient pb-5 pt-20 md:pb-2">
         <Container className="relative z-50">
           {historySec && Object.keys(historySec).length > 0 ? (
             <>
@@ -170,19 +177,21 @@ export default async function AboutPage() {
         </Container>
       </section>
 
-      <section className="visitor-map relative bg-white sm:py-20">
+      <section className="visitor-map relative z-10 bg-white py-20">
         <Container>
           {dataCenterMap && Object.keys(dataCenterMap).length > 0 ? (
             <>
-              <CommonTitle
-                className="md:px-10"
-                section_title={dataCenterMap?.section_title}
-                description={dataCenterMap?.description}
-              />
+              <div className="mx-auto max-w-[700px]">
+                <CommonTitle
+                  className="md:px-10"
+                  section_title={dataCenterMap?.section_title}
+                  description={dataCenterMap?.description}
+                />
+              </div>
               <Image
-                src={dataCenterMap?.map_image?.url}
+                src={dataCenterMap?.map_image?.url as string}
                 alt={dataCenterMap?.map_image?.alt}
-                className="mx-auto mt-20 h-[500px] w-full"
+                className="mx-auto mt-20 h-auto w-full md:h-[500px]"
                 width={1000}
                 height={500}
                 priority
@@ -197,11 +206,11 @@ export default async function AboutPage() {
         </Container>
       </section>
 
-      <section className="counter-section my-20">
+      <section className="counter-section mb-20 mt-10 md:my-20">
         <Container>
-          <div className="counter-section-bg relative min-h-[168px] rounded-lg bg-custom-gradient px-20 py-8">
+          <div className="counter-section-bg relative min-h-[168px] rounded-lg bg-custom-gradient px-8 py-8 md:px-20">
             {counterCTA && Object.keys(counterCTA).length > 0 ? (
-              <div className="grid grid-cols-4 gap-10">
+              <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4">
                 {counterCTA.add_block &&
                   counterCTA?.add_block.map((counter: CounterCTAProps) => (
                     <CounterCard
@@ -234,7 +243,7 @@ export default async function AboutPage() {
               />
               <div className="testimonial-container mt-10 w-full">
                 <TestimonialContainer
-                  testimonial_block={testimonial?.testimonial_block ?? []}
+                  testimonial_block={testimonialPost ?? []}
                 />
               </div>
             </>

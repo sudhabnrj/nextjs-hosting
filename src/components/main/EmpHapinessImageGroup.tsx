@@ -12,16 +12,16 @@ interface ImageGroupProps {
 export default function EmpHapinessImageGroup({ ImageGroup }: ImageGroupProps) {
   return (
     <>
-      <div className="absolute w-[402px] h-[536px] -top-[60px] left-[65%] -translate-x-1/2 -z-10">
+      <div className="absolute -top-[60px] left-1/2 -z-10 h-[300px] w-full -translate-x-1/2 sm:w-[402px] md:h-[536px] xl:left-[65%]">
         <Image
           src={Blob}
           alt="blob"
-          className="w-full h-full"
+          className="h-full w-full"
           width={402}
           height={540}
         />
       </div>
-      <div className="w-[60%]">
+      <div className="h-auto w-[100%] sm:w-[60%]">
         {ImageGroup && (
           <Image
             src={ImageGroup?.large_image?.url as string}
@@ -33,12 +33,12 @@ export default function EmpHapinessImageGroup({ ImageGroup }: ImageGroupProps) {
           />
         )}
       </div>
-      <div className="w-[40%] h-[311px] relative top-20">
+      <div className="relative top-20 h-auto w-[100%] sm:h-[311px] sm:w-[40%]">
         {ImageGroup && (
           <Image
             src={ImageGroup?.small_image?.url as string}
             alt={ImageGroup?.small_image?.alt as string}
-            className="w-full object-cover h-full"
+            className="h-full w-full object-cover"
             width={ImageGroup?.small_image?.width as number}
             height={ImageGroup?.small_image?.height as number}
             priority

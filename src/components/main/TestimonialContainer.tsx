@@ -2,7 +2,7 @@
 import React from "react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import TestimonialCard from "./TestimonialCard";
 import { testimonialProps } from "@/types/types";
@@ -20,14 +20,14 @@ export default function TestimonialContainer({
         slidesPerView={3}
         spaceBetween={30}
         centeredSlides={true}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination]}
+        modules={[Pagination, Autoplay]}
         breakpoints={{
           1024: {
             slidesPerView: 3, // For desktop screens (1024px and above)
@@ -41,9 +41,9 @@ export default function TestimonialContainer({
         }}
         className="mySwiper !pb-10"
       >
-        {testimonial_block.map((comment: testimonialProps) => (
+        {testimonial_block?.map((comment: testimonialProps) => (
           <SwiperSlide className="min-h-[285px]" key={comment.id}>
-            <TestimonialCard data={comment} />
+            <TestimonialCard data={comment ?? []} />
           </SwiperSlide>
         ))}
       </Swiper>

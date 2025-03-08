@@ -26,20 +26,20 @@ export default function FeaturesList({
 
   return (
     <div
-      className={`${className} col-span-12 sm:col-span-6 lg:col-span-3 relative rounded-[9.19px] border border-[#d4dcff] px-9 py-7 group hover:border-lightBlue`}
+      className={`${className} group relative col-span-12 rounded-[9.19px] border border-[#d4dcff] px-9 py-7 hover:border-lightBlue sm:col-span-6 lg:col-span-3`}
     >
-      <Image src={icon} alt="VPSHosting" width={55} height={55} />
-      <h3 className="text-secondary text-xl font-semibold font-beatrice capitalize leading-normal mt-6 mb-5">
+      <Image src={icon as string} alt="VPSHosting" width={55} height={55} />
+      <h3 className="mb-5 mt-6 font-beatrice text-xl font-semibold capitalize leading-normal text-secondary">
         {title}
       </h3>
-      <p className="text-secondary/95 text-sm font-normal font-dmSans leading-snug mb-6">
+      <p className="mb-6 font-dmSans text-sm font-normal leading-snug text-secondary/95">
         {description}
       </p>
       {pageUrl && (
         <>
           {!isFeatured ? (
             <Link
-              className="w-[36.74px] h-[36.74px] p-[11.02px] bg-[#ecefff] rounded-full justify-center items-center inline-flex group-hover:shadow-lg transition-all"
+              className="inline-flex h-[36.74px] w-[36.74px] items-center justify-center rounded-full bg-[#ecefff] p-[11.02px] transition-all group-hover:shadow-lg"
               aria-label={`Read more about ${title}`}
               href={filterUrl}
             >
@@ -47,7 +47,7 @@ export default function FeaturesList({
             </Link>
           ) : (
             <Link
-              className="bg-white/20 rounded border border-[#66a9ff] justify-center items-center inline-flex text-center text-white text-sm font-medium font-dmSans capitalize leading-normal py-2 px-4 group-hover:shadow-lg transition-all"
+              className="inline-flex items-center justify-center rounded border border-[#66a9ff] bg-white/20 px-4 py-2 text-center font-dmSans text-sm font-medium capitalize leading-normal text-white transition-all group-hover:shadow-lg"
               href={filterUrl}
             >
               Learn More

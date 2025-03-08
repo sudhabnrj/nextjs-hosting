@@ -1,41 +1,38 @@
 import Image from "next/image";
 import React from "react";
 import QuoteIcon from "../ui/QuoteIcon";
+import { acfTestimonial } from "@/types/types";
 
 interface TestimonialProps {
   data: {
-    author_name: string;
-    author_designation: string;
-    author_image: {
-      url: string;
-    };
-    comments: string;
+    acf: acfTestimonial;
   };
 }
 
 export default function TestimonialCard({ data }: TestimonialProps) {
-  const { author_name, author_designation, author_image, comments } = data;
+  const { author_name, designation, author_image, comments } =
+    data?.acf?.testimonial_block;
   return (
-    <div className="bg-white relative overflow-hidden shadow p-8 rounded-[9px] border border-b-4 border-[#CCE4FF] min-h-[285px] flex flex-col testimobnial-card">
+    <div className="testimobnial-card relative flex min-h-[285px] flex-col overflow-hidden rounded-[9px] border border-b-4 border-[#CCE4FF] bg-gradient-to-b from-[#D8EAFF] to-[#F6F6F6] p-8 shadow">
       <QuoteIcon className="fill-[#4C5671]" width={27} height={22} />
-      <p className="text-secondary font-dmSans text-base leading-normal my-6">
+      <p className="my-6 font-dmSans text-base leading-normal text-secondary">
         {comments}
       </p>
-      <div className="w-full flex justify-start items-center mt-auto">
+      <div className="mt-auto flex w-full items-center justify-start">
         {author_image && (
           <Image
             alt={author_name}
-            src={author_image?.url}
+            src={author_image?.url as string}
             width={50}
             height={50}
             priority
-            className="rounded-full object-cover w-12 h-12"
+            className="h-12 w-12 rounded-full object-cover"
           />
         )}
-        <h3 className="flex flex-col pl-3 max-w-[calc(100%-50px)] text-secondary font-semibold font-beatrice text-base">
+        <h3 className="flex max-w-[calc(100%-50px)] flex-col pl-3 font-beatrice text-base font-semibold text-secondary">
           {author_name}
-          <span className="text-[#4C5671] text-sm font-normal font-dmSans">
-            {author_designation}
+          <span className="font-dmSans text-sm font-normal text-[#4C5671]">
+            {designation}
           </span>
         </h3>
       </div>

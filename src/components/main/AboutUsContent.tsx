@@ -17,12 +17,12 @@ export default function AboutUsContent({
 }: AboutContentProps) {
   return (
     <>
-      <div className="w-1/2 relative flex flex-row items-stretch gap-4">
-        <div className="absolute w-[402px] h-[540px] -top-[40px] left-[65%] -translate-x-1/2 -z-10">
+      <div className="relative flex w-full flex-row items-stretch gap-4 lg:w-1/2">
+        <div className="absolute -top-[40px] left-1/2 -z-10 h-[200px] w-full -translate-x-1/2 md:left-[65%] md:h-[540px] md:w-[402px]">
           <Image
             src={Blob}
             alt="blob"
-            className="w-full h-full"
+            className="h-full w-full"
             width={402}
             height={540}
           />
@@ -39,7 +39,7 @@ export default function AboutUsContent({
             />
           )}
         </div>
-        <div className="w-[40%] relative top-20">
+        <div className="relative top-20 w-[40%]">
           {AboutBanner && (
             <Image
               className={`w-full h-[${AboutBanner?.small_image?.height}px]`}
@@ -52,27 +52,27 @@ export default function AboutUsContent({
           )}
         </div>
       </div>
-      <div className="w-1/2 flex flex-col gap-3">
+      <div className="flex w-full flex-col gap-3 lg:w-1/2">
         {AboutContent &&
           AboutContent.map((item: SectionBlockProps) => (
-            <div className="w-full flex flex-col gap-3" key={item.id}>
-              <h3 className="text-2xl font-beatrice font-semibold">
+            <div className="flex w-full flex-col gap-3" key={item.id}>
+              <h3 className="font-beatrice text-2xl font-semibold">
                 {item?.title}
               </h3>
               {item.description &&
                 item.description.map((paragraph) => (
                   <p
                     key={paragraph.id}
-                    className="font-dmSans text-bodyText text-base"
+                    className="font-dmSans text-base text-bodyText"
                   >
                     {paragraph?.paragraph}
                   </p>
                 ))}
               {item.icon && (
                 <Image
-                  src={item?.icon.url}
+                  src={item?.icon.url as string}
                   alt="24/7 Support"
-                  className="w-10 h-10 mt-3"
+                  className="mt-3 h-10 w-10"
                   width={24}
                   height={24}
                 />

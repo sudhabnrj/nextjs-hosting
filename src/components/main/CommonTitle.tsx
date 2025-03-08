@@ -14,14 +14,14 @@ export default function CommonTitle({
   className,
 }: CommonTitleProps) {
   return (
-    <div className="text-center relative max-w-max mx-auto">
-      <h2 className="text-primary text-center text-3xl lg:text-4xl 2xl:text-h2-title font-semibold font-beatrice lg:leading-normal tracking-wide max-w-full md:w-max relative mx-auto w-full">
-        <DividerLeft className="absolute xl:-left-[256px] -left-[50px] hidden xl:block top-1/2 -translate-y-1/2" />
+    <div className="relative mx-auto max-w-max text-center">
+      <h2 className="relative mx-auto w-full max-w-full text-center font-beatrice text-3xl font-semibold tracking-wide text-primary md:w-max lg:max-w-[700px] lg:text-4xl lg:leading-normal min-[1400px]:max-w-[900px] 2xl:text-h2-title min-[1680px]:max-w-full">
+        <DividerLeft className="absolute -left-[50px] top-1/2 hidden -translate-y-1/2 xl:-left-[256px] xl:block" />
         <span className={`block ${className}`}>{section_title}</span>
-        <DividerRight className="absolute xl:-right-[256px] -right-[50px] hidden xl:block top-1/2 -translate-y-1/2" />
+        <DividerRight className="absolute -right-[50px] top-1/2 hidden -translate-y-1/2 xl:-right-[256px] xl:block" />
       </h2>
       {description && (
-        <p className="text-bodyText text-lg font-normal font-dmSans leading-normal mt-5">
+        <p className="mt-5 font-dmSans text-lg font-normal leading-normal text-bodyText">
           {description}
         </p>
       )}
