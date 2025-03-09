@@ -32,7 +32,7 @@ export const handleMenuClick = async (
     try {
       data = JSON.parse(responseText);
     } catch (jsonError) {
-      console.error("❌ Invalid JSON Response:", responseText);
+      console.error("❌ Invalid JSON Response:", jsonError);
       alert("Unexpected API response format. Check console for details.");
       return;
     }

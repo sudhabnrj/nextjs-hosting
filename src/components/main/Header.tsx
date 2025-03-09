@@ -10,11 +10,10 @@ import ToggleNav from "../ui/ToggleNav";
 import AccountButton from "./../account/AccountButton";
 import { useAuth } from "@/contexts/AuthContext";
 import { RxAvatar } from "react-icons/rx";
-import Button from "../ui/Button";
 import DropdownMenu from "../account/DropdownMenu";
 
 const Header = () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [isClient, setIsClient] = useState(false);
   const [isToggle, setIsToggle] = useState(false);
   const [visibleAccountDropdown, setVisibleAccountDropdown] = useState(false);
@@ -52,9 +51,9 @@ const Header = () => {
     setIsToggle((prev) => !prev);
   };
 
-  const handleLogout = () => {
-    logout();
-  };
+  // const handleLogout = () => {
+  //   logout();
+  // };
 
   return (
     <header className="absolute left-0 right-0 top-0 z-[1000] pt-6">

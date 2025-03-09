@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 import { fetchPageData } from "@/lib/fetchPageData";
 import CommonTitle from "@/components/main/CommonTitle";
 import HeroCommon from "@/components/main/HeroCommon";

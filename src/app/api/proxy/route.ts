@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     try {
       data = JSON.parse(responseText);
     } catch (jsonError) {
-      console.error("❌ Invalid JSON from API:", responseText);
+      console.error("❌ Invalid JSON from API:", jsonError);
       return NextResponse.json(
         { error: "Invalid JSON response from API", details: responseText },
         { status: 500 },
