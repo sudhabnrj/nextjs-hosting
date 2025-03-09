@@ -15,7 +15,9 @@ interface Server {
   ramDes: string;
   storage: string;
   storageDes: string;
-  price: string;
+  priceUSD: string;
+  priceEUR: string;
+  priceINR: string;
 }
 
 const servers: Server[] = [
@@ -29,7 +31,9 @@ const servers: Server[] = [
     ramDes: "64GB MAX",
     storage: "2x1TB",
     storageDes: "RAID 1 (1TB Usable)",
-    price: "$95.60",
+    priceUSD: "$95.60",
+    priceEUR: "€89.00",
+    priceINR: "₹7,900",
   },
   {
     title: "Professional light Server",
@@ -41,7 +45,9 @@ const servers: Server[] = [
     ramDes: "64GB MAX",
     storage: "2x1TB",
     storageDes: "RAID 1 (1TB Usable)",
-    price: "$95.60",
+    priceUSD: "$115.60",
+    priceEUR: "€19.00",
+    priceINR: "₹7,600",
   },
   {
     title: "Enterprise 10 Cores Server",
@@ -53,7 +59,9 @@ const servers: Server[] = [
     ramDes: "64GB MAX",
     storage: "2x1TB",
     storageDes: "RAID 1 (1TB Usable)",
-    price: "$95.60",
+    priceUSD: "$35.60",
+    priceEUR: "€49.00",
+    priceINR: "₹5,900",
   },
   {
     title: "Enterprise 20 Cores Light",
@@ -65,7 +73,9 @@ const servers: Server[] = [
     ramDes: "64GB MAX",
     storage: "2x1TB",
     storageDes: "RAID 1 (1TB Usable)",
-    price: "$95.60",
+    priceUSD: "$55.60",
+    priceEUR: "€69.00",
+    priceINR: "₹6,900",
   },
   {
     title: "Professional Server",
@@ -77,7 +87,24 @@ const servers: Server[] = [
     ramDes: "64GB MAX",
     storage: "2x1TB",
     storageDes: "RAID 1 (1TB Usable)",
-    price: "$95.60",
+    priceUSD: "$95.60",
+    priceEUR: "€89.00",
+    priceINR: "₹7,900",
+  },
+  
+  {
+    title: "Professional Server",
+    cpu: "6C/12T",
+    cpuDes: "Xeon E-2236",
+    speed: "3.4GHZ",
+    speedDes: "4.8 GHZ Turbo",
+    ram: "32GB",
+    ramDes: "64GB MAX",
+    storage: "2x1TB",
+    storageDes: "RAID 1 (1TB Usable)",
+    priceUSD: "$95.60",
+    priceEUR: "€89.00",
+    priceINR: "₹7,900",
   },
   {
     title: "Professional Server",
@@ -89,7 +116,9 @@ const servers: Server[] = [
     ramDes: "64GB MAX",
     storage: "2x1TB",
     storageDes: "RAID 1 (1TB Usable)",
-    price: "$95.60",
+    priceUSD: "$95.60",
+    priceEUR: "€89.00",
+    priceINR: "₹7,900",
   },
   {
     title: "Professional Server",
@@ -101,7 +130,9 @@ const servers: Server[] = [
     ramDes: "64GB MAX",
     storage: "2x1TB",
     storageDes: "RAID 1 (1TB Usable)",
-    price: "$95.60",
+    priceUSD: "$395.60",
+    priceEUR: "€389.00",
+    priceINR: "₹3,900",
   },
   {
     title: "Professional Server",
@@ -113,7 +144,9 @@ const servers: Server[] = [
     ramDes: "64GB MAX",
     storage: "2x1TB",
     storageDes: "RAID 1 (1TB Usable)",
-    price: "$95.60",
+    priceUSD: "$95.60",
+    priceEUR: "€89.00",
+    priceINR: "₹7,900",
   },
   {
     title: "Professional Server",
@@ -125,7 +158,9 @@ const servers: Server[] = [
     ramDes: "64GB MAX",
     storage: "2x1TB",
     storageDes: "RAID 1 (1TB Usable)",
-    price: "$95.60",
+    priceUSD: "$65.60",
+    priceEUR: "€69.00",
+    priceINR: "₹7,900",
   },
   {
     title: "Professional Server",
@@ -137,19 +172,9 @@ const servers: Server[] = [
     ramDes: "64GB MAX",
     storage: "2x1TB",
     storageDes: "RAID 1 (1TB Usable)",
-    price: "$95.60",
-  },
-  {
-    title: "Professional Server",
-    cpu: "6C/12T",
-    cpuDes: "Xeon E-2236",
-    speed: "3.4GHZ",
-    speedDes: "4.8 GHZ Turbo",
-    ram: "32GB",
-    ramDes: "64GB MAX",
-    storage: "2x1TB",
-    storageDes: "RAID 1 (1TB Usable)",
-    price: "$95.60",
+    priceUSD: "$95.60",
+    priceEUR: "€89.00",
+    priceINR: "₹7,900",
   },
 ];
 
@@ -157,6 +182,8 @@ const itemsPerPage = 5;
 
 export default function PricingWithTable() {
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
+  const [showClearButton, setShowClearButton] = useState<boolean>(false);
   const totalPages: number = Math.ceil(servers.length / itemsPerPage);
 
   const paginatedServers: Server[] = servers.slice(
@@ -198,23 +225,44 @@ export default function PricingWithTable() {
     ));
   };
 
+  const clearAll = () => {
+    setShowClearButton(false);
+    setSelectedCurrency('USD');
+  }
+
+  const handleCurrencyChange = (currency: string) => {
+    setSelectedCurrency(currency);
+    setShowClearButton(true); // Show "Clear All" when a currency is clicked
+  };
+
+  const getPrice = (server: Server) => {
+    switch (selectedCurrency) {
+      case "EUR":
+        return server.priceEUR;
+      case "INR":
+        return server.priceINR;
+      default:
+        return server.priceUSD;
+    }
+  };
+
   return (
     <div className="w-full sm:p-6">
       <div className="mb-7 flex flex-col items-center justify-center sm:flex-row sm:justify-between">
         <div className="mb-5 flex w-full items-center justify-center sm:mb-0 sm:w-1/3 sm:items-start sm:justify-start">
-          <Button className="flex items-center justify-center gap-2 rounded-md bg-gray-300 font-beatrice text-sm text-gray-500">
+          {showClearButton ? <Button onClick={clearAll} className="flex items-center justify-center gap-2 rounded-md bg-gray-300 font-beatrice text-sm text-gray-500">
             Clear All
             <IoClose className="h-6 w-6" />
-          </Button>
+          </Button> : null}
         </div>
         <div className="flex w-max justify-end gap-2 rounded-md border-2 border-blue-600 p-2">
-          <Button className="flex min-w-[80px] items-center justify-center gap-2 rounded-md bg-custom-gradient !px-3 font-beatrice text-sm text-white hover:bg-custom-gradient-hover">
+          <Button onClick={()=> handleCurrencyChange('USD')} className={`flex min-w-[80px] items-center justify-center border-2 gap-2 rounded-md ${selectedCurrency === 'USD' ? 'text-white hover:bg-custom-gradient-hover bg-custom-gradient' : 'border-blue-600 bg-transparent hover:bg-transparent' }  !px-3 font-beatrice text-sm `}>
             USD
           </Button>
-          <Button className="flex min-w-[80px] items-center justify-center gap-2 rounded-md border-2 border-blue-600 !px-3 font-beatrice text-sm">
+          <Button onClick={()=> handleCurrencyChange('EUR')} className={`flex min-w-[80px] items-center justify-center gap-2 rounded-md border-2 !px-3 font-beatrice text-sm ${selectedCurrency === 'EUR' ? 'text-white hover:bg-custom-gradient-hover bg-custom-gradient' : 'border-blue-600 bg-transparent hover:bg-transparent' }  !px-3 font-beatrice text-sm `}>
             EUR
           </Button>
-          <Button className="flex min-w-[80px] items-center justify-center gap-2 rounded-md border-2 border-blue-600 !px-3 font-beatrice text-sm">
+          <Button onClick={()=> handleCurrencyChange('INR')} className={`flex min-w-[80px] items-center justify-center gap-2 rounded-md border-2 !px-3 font-beatrice text-sm ${selectedCurrency === 'INR' ? 'text-white hover:bg-custom-gradient-hover bg-custom-gradient' : 'border-blue-600 bg-transparent hover:bg-transparent' }  !px-3 font-beatrice text-sm `}>
             INR
           </Button>
         </div>
@@ -273,7 +321,7 @@ export default function PricingWithTable() {
 
             <div className="mt-5 flex-1 md:mt-0 md:max-w-[180px] md:text-center">
               <p className="font-dmSans text-2xl font-bold text-primary">
-                {server.price}
+              {getPrice(server)}
                 <span className="text-xs text-bodyText">/mo</span>
               </p>
               <p className="font-dmSans text-xs text-bodyText">
