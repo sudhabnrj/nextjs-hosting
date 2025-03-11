@@ -35,7 +35,6 @@ export const handleMenuClick = async (
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: params,
-      next: { revalidate: 60 }, // Revalidate every 60 seconds
     });
 
     // Read response as text (before JSON parsing)
@@ -79,7 +78,6 @@ export async function fetchProducts(): Promise<ProductData> {
       },
       body: params,
       cache: "no-store", // Ensures fresh data in SSR
-      next: { revalidate: 60 }, // Revalidate every 60 seconds
     });
 
     const responseText = await response.text(); // Read response as text

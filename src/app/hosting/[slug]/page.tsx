@@ -12,12 +12,11 @@ import {
   getSectionData,
   renderErrorMessage,
 } from "@/lib/utility";
-import { FeaturedBlockListProps, PageComponent } from "@/types/types";
+import { FeaturedBlockListProps, PageComponent, Product } from "@/types/types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
 import { fetchPost } from "@/lib/fetchPost";
-import { fetchProducts } from "@/lib/api";
 import PricingCard from "@/components/main/PricingCard";
 
 type Props = {
@@ -44,6 +43,21 @@ export async function generateMetadata(
   };
 }
 
+async function getProducts() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, {
+      method: 'GET',
+      cache: 'no-store', // Ensures fresh data on every request
+  });
+
+  if (!res.ok) {
+      throw new Error('Failed to fetch products');
+  }
+
+  const data = await res.json();
+  console.log(data);
+  return data.products || [];
+}
+
 export default async function HostingPages({
   params,
 }: {
@@ -52,11 +66,10 @@ export default async function HostingPages({
   const slug = (await params).slug;
 
   const page = await fetchPageData(slug);
-  const productData = await fetchProducts();
-  
-    if (!productData.length) {
-      return <div>No products available.</div>;
-    }
+
+  const productData = (await getProducts()) 
+  ? await getProducts() 
+  : [];
 
   if (!page) {
     console.error("Error: Page data not found");
@@ -127,18 +140,28 @@ export default async function HostingPages({
                   description={pricingSection?.description}
                 />
                 <div className="pricing-container mt-10 flex flex-col items-center justify-center gap-8 lg:col-span-3 lg:grid lg:grid-flow-col lg:items-stretch lg:gap-x-4 xl:justify-between xl:px-14">
-                  {productData[0]?.map((product, index)=> (
+                {productData?.product.length > 0 ? (
+                  productData?.product.map((product: Product, index: number) => (
                     <PricingCard
                       key={product?.pid}
-                      icon={index === 0 ? "/images/shared-hosting.svg" 
-                        : index === 1 ? "/images/globe-white.svg"
-                        : "/images/wordpress.svg"}
+                      icon={
+                        index === 0
+                          ? "/images/shared-hosting.svg"
+                          : index === 1
+                          ? "/images/globe-white.svg"
+                          : "/images/wordpress.svg"
+                      }
                       title={product?.name}
                       price={product?.pricing?.INR?.monthly}
                       url={product?.product_url}
-                      features={<div dangerouslySetInnerHTML={{ __html: product?.description }} />}
+                      features={
+                        <div dangerouslySetInnerHTML={{ __html: product?.description }} />
+                      }
                     />
-                  ))}
+                  ))
+                ) : (
+                  <p className="text-center text-red-500">No products available.</p>
+                )}
                 </div>
               </>
             ) : (

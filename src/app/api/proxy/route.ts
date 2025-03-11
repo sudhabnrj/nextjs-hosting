@@ -60,6 +60,7 @@ export async function POST(req: Request) {
     }
 
     console.log("Parsed API Response:", data);
+    console.log("✅ API Response:", data);
     return NextResponse.json(data);
   } catch (error) {
     console.error("Server Error:", error);

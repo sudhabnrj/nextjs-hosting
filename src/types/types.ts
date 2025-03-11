@@ -250,3 +250,15 @@ export interface compareListItem {
   icon: ImageProps;
   id: string;
 }
+
+export interface Product {
+  pid: string;
+  name: string;
+  pricing: {
+    INR: {
+      monthly: string;
+    };
+  };
+  product_url: string;
+  description: string;
+}
