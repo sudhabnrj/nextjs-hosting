@@ -35,6 +35,7 @@ export const handleMenuClick = async (
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: params,
+      next: { revalidate: 60 }, // Revalidate every 60 seconds
     });
 
     // Read response as text (before JSON parsing)
