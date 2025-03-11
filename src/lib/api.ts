@@ -1,17 +1,3 @@
-interface Product {
-  pid: string;
-  name: string;
-  pricing: {
-    INR: {
-      monthly: string;
-    };
-  };
-  product_url: string;
-  description: string;
-}
-
-type ProductData = Product[][];
-
 export const handleMenuClick = async (
   destination: string,
   clientId: number,
@@ -39,7 +25,7 @@ export const handleMenuClick = async (
 
     // Read response as text (before JSON parsing)
     const responseText = await response.text();
-    console.log("🔍 API Response (Raw):", responseText);
+    // console.log("🔍 API Response (Raw):", responseText);
 
     // Attempt to parse JSON
     let data;
@@ -51,7 +37,7 @@ export const handleMenuClick = async (
       return;
     }
 
-    console.log("✅ Parsed API Response:", data);
+    // console.log("✅ Parsed API Response:", data);
 
     if (data?.result === "success" && data.redirect_url) {
       window.location.href = data.redirect_url; // Redirect to WHM client area
@@ -61,47 +47,6 @@ export const handleMenuClick = async (
   } catch (error) {
     console.error("🔥 Error in handleMenuClick:", error);
     alert("An error occurred. Please try again.");
-  }
-};
-
-export async function fetchProducts(): Promise<ProductData> {
-  try {
-    const API_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/proxy`;
-
-    const params = new URLSearchParams();
-    params.append("action", "GetProducts");
-
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: params,
-      cache: "no-store", // Ensures fresh data in SSR
-    });
-
-    const responseText = await response.text(); // Read response as text
-    console.log("API Response (Raw):", responseText);
-
-    let data;
-    try {
-      data = JSON.parse(responseText); // Attempt to parse JSON
-    } catch (jsonError) {
-      console.error("Invalid JSON Response:", jsonError);
-      throw new Error("Invalid JSON response from API.");
-    }
-
-    if (data?.result === "success") {
-      const productArray = Object.values(data.products) as Product[][];
-      console.log("Transformed Products Data:", productArray);
-      return productArray;
-    } else {
-      console.error("Failed to fetch products:", data);
-      throw new Error("Failed to fetch products.");
-    }
-  } catch (error) {
-    console.error("Error in fetchProducts:", error);
-    throw error;
   }
 };
 

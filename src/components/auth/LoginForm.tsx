@@ -41,7 +41,7 @@ const LoginForm = () => {
 
       if (data.token) {
         login(data.token, data.userId);
-        console.log("Stored Token:", data.token, "UserId:", data.userId); // Debugging
+        // console.log("Stored Token:", data.token, "UserId:", data.userId);
         router.push("/dashboard");
       } else {
         setError("Login failed, no token received.");

@@ -17,12 +17,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const token = localStorage.getItem("session");
     const storedUserId = localStorage.getItem("userId");
-    console.log("Loaded Token from Storage:", token); // Debugging
+    // console.log("Loaded Token from Storage:", token);
     setIsAuthenticated(!!token);
     setUserId(storedUserId);
 
-    console.log("Loaded Token from Storage:", token); // Debugging
-    console.log("Loaded User ID from Storage:", storedUserId); // Debugging
+    // console.log("Loaded Token from Storage:", token); // Debugging
+    // console.log("Loaded User ID from Storage:", storedUserId); // Debugging
 
     if (token) {
       setIsAuthenticated(true);

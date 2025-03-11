@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       },
     );
 
-    console.log("API Response:", response.data); // Debugging
+    // console.log("API Response:", response.data); // Debugging
 
     if (response.data.result !== "success") {
       return NextResponse.json(
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
       ? response.data.userid.toString()
       : null; // Replace with actual token if available
 
-    console.log("Login user id new", sessionToken);
+    // console.log("Login user id new", sessionToken);
 
     return NextResponse.json(
       {

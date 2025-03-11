@@ -23,19 +23,12 @@ export async function POST(req: Request) {
     params.append("username", username);
     params.append("password", password);
 
-    const action = body.get("action");
-
     // Append other form-data fields
-    if (action === "GetProducts") {
-      params.append("action", "GetProducts");
-      params.append("responsetype", "json");
-    } else {
-      body.forEach((value, key) => {
-        params.append(key, value.toString());
-      });
-    }
+    body.forEach((value, key) => {
+      params.append(key, value.toString());
+    });
 
-    console.log("Sending Secure API Request:", params.toString());
+    // console.log("Sending Secure API Request:", params.toString());
 
     // Send request
     const response = await fetch(API_URL, {
@@ -46,7 +39,7 @@ export async function POST(req: Request) {
 
 
     const responseText = await response.text();
-    console.log("🔍 API Response:", responseText);
+    // console.log("🔍 API Response:", responseText);
 
     let data;
     try {
@@ -59,8 +52,8 @@ export async function POST(req: Request) {
       );
     }
 
-    console.log("Parsed API Response:", data);
-    console.log("✅ API Response:", data);
+    // console.log("Parsed API Response:", data);
+    // console.log("✅ API Response:", data);
     return NextResponse.json(data);
   } catch (error) {
     console.error("Server Error:", error);

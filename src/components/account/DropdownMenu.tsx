@@ -9,16 +9,6 @@ const DropdownMenu = () => {
   const validClientId = !isNaN(clientId as number) ? clientId : null;
   const serviceId = 1; // Replace with dynamic values if needed
 
-  console.log("User ID Type:", typeof userId, "Value:", userId);
-  console.log("Client ID:", clientId);
-
-  console.log(
-    "username: ",
-    process.env.CLIENTID,
-    "password: ",
-    process.env.PASSWORD,
-  );
-
   const handleLogout = () => {
     logout();
   };
