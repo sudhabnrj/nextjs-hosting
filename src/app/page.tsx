@@ -23,7 +23,6 @@ import {
   renderErrorMessage,
 } from "@/lib/utility";
 import CommonTitle from "@/components/main/CommonTitle";
-import PricingContainer from "@/components/main/PricingContainer";
 import FeaturesList from "@/components/main/FeaturesList";
 import HostingSolutionList from "@/components/main/HostingSolutionList";
 import ShildCheckmark from "@/components/ui/ShildCheckmarkIcon";
@@ -34,9 +33,16 @@ import TabComponent from "@/components/main/TabComponent";
 import DataCenterCard from "@/components/main/DataCenterCard";
 import { fetchPost } from "@/lib/fetchPost";
 import { notFound } from "next/navigation";
+import { fetchProducts } from "@/lib/api";
+import PricingCard from "@/components/main/PricingCard";
 
 export default async function Home() {
   const page = await fetchPageData("home");
+  const productData = await fetchProducts();
+
+  if (!productData.length) {
+    return <div>No products available.</div>;
+  }
 
   if (!page || Object.keys(page).length === 0) {
     console.error("Error: Page data not found or is empty");
@@ -170,7 +176,18 @@ export default async function Home() {
                 description={pricingSection?.description}
               />
               <div className="pricing-container mt-10 flex flex-col items-center justify-center gap-8 lg:col-span-3 lg:grid lg:grid-flow-col lg:items-stretch lg:gap-x-4 xl:justify-between xl:px-14">
-                <PricingContainer />
+              {productData[0]?.map((product, index)=> (
+                <PricingCard
+                  key={product?.pid}
+                  icon={index === 0 ? "/images/shared-hosting.svg" 
+                    : index === 1 ? "/images/globe-white.svg"
+                    : "/images/wordpress.svg"}
+                  title={product?.name}
+                  price={product?.pricing?.INR?.monthly}
+                  url={product?.product_url}
+                  features={<div dangerouslySetInnerHTML={{ __html: product?.description }} />}
+                />
+              ))}
               </div>
             </>
           ) : (

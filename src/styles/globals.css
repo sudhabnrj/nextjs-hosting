@@ -281,6 +281,35 @@ h6 {
 .account-dropdown li:last-child > button {
   @apply w-full bg-custom-gradient text-center text-white;
 }
+.pricing-container > div:nth-child(2){
+  @apply bg-custom-gradient
+}
+.pricing-container > div:nth-child(2) > *,
+.pricing-container > div:nth-child(2) h4 > span,
+.pricing-container > div:nth-child(2) ul li{
+  @apply !text-white
+}
+.price-description div > ul > li{
+  @apply flex justify-start items-center text-sm mb-3 text-bodyText  font-dmSans relative pl-8
+}
+
+.price-description div > ul > li::before{
+  content: "";
+  background-image: url(../../public/images/tick-light.svg);
+  @apply absolute left-0 top-1/2 -translate-y-1/2 w-5 h-5 bg-center bg-contain bg-no-repeat;
+}
+.pricing-container > div:nth-child(2) .price-description div > ul > li::before{
+  background-image: url(../../public/images/tick-white.svg);
+}
+.price-description div > ul + ul{
+  @apply mt-7;
+}
+.price-description div > ul + ul > li{
+  @apply text-sm text-primary font-dmSans mb-2 flex justify-start items-center
+}
+.pricing-container > div:nth-child(2) a{
+  @apply bg-white text-primary
+}
 /* * {
   border: 1px solid red;
 } */

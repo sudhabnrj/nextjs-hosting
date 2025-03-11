@@ -2,7 +2,6 @@ import AlternateBlock from "@/components/main/AlternateBlock";
 import CommonTitle from "@/components/main/CommonTitle";
 import CTA from "@/components/main/CTA";
 import HeroCommon from "@/components/main/HeroCommon";
-import PricingContainer from "@/components/main/PricingContainer";
 import TestimonialContainer from "@/components/main/TestimonialContainer";
 import TitleSecondary from "@/components/main/TitleSecondary";
 import Card from "@/components/ui/Card";
@@ -18,6 +17,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
 import { fetchPost } from "@/lib/fetchPost";
+import { fetchProducts } from "@/lib/api";
+import PricingCard from "@/components/main/PricingCard";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -51,6 +52,11 @@ export default async function HostingPages({
   const slug = (await params).slug;
 
   const page = await fetchPageData(slug);
+  const productData = await fetchProducts();
+  
+    if (!productData.length) {
+      return <div>No products available.</div>;
+    }
 
   if (!page) {
     console.error("Error: Page data not found");
@@ -121,7 +127,18 @@ export default async function HostingPages({
                   description={pricingSection?.description}
                 />
                 <div className="pricing-container mt-10 flex flex-col items-center justify-center gap-8 lg:col-span-3 lg:grid lg:grid-flow-col lg:items-stretch lg:gap-x-4 xl:justify-between xl:px-14">
-                  <PricingContainer />
+                  {productData[0]?.map((product, index)=> (
+                    <PricingCard
+                      key={product?.pid}
+                      icon={index === 0 ? "/images/shared-hosting.svg" 
+                        : index === 1 ? "/images/globe-white.svg"
+                        : "/images/wordpress.svg"}
+                      title={product?.name}
+                      price={product?.pricing?.INR?.monthly}
+                      url={product?.product_url}
+                      features={<div dangerouslySetInnerHTML={{ __html: product?.description }} />}
+                    />
+                  ))}
                 </div>
               </>
             ) : (
